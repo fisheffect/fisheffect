@@ -1,0 +1,6 @@
+.idea
+.vs
+packages
+
+fisheffect-api/bin/
+fisheffect-api/obj/

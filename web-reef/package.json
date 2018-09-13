@@ -1,0 +1,18 @@
+{
+  "name": "fisheffect-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "phaser-scripts start",
+    "build": "phaser-scripts build",
+    "eject": "phaser-scripts eject"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "phaser": "^3.12.0",
+    "@cityofzion/neon-js": "3.3.2"
+  },
+  "devDependencies": {
+    "@phaser-cli/scripts": "^1.0.10"
+  }
+}

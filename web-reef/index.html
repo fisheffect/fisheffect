@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Fish Effect</title>
+    <style>
+      /* ELEMENTS */
+      * {
+        font-family: sans-serif;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+      body {
+        background: black;
+        margin: 0;
+      }
+      input {
+        height: 30px;
+        padding: 10px;
+      }
+      button {
+        height: 40px;
+        border-radius: 5px;
+      }
+      button[type=button] {
+        border: 1px solid black;
+      }
+      button[type=submit] {
+        background: black;
+        color: white;
+      }
+
+      /* LINELAY */
+      .h-window {
+        height: 100vh;
+      }
+      .w-window {
+        width: 100vw;
+      }
+      .items-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .horiz {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .verti {
+        display: flex;
+        flex-direction: column;
+      }
+      .mb-10 {
+         margin-bottom: 10px;
+       }
+      .mr-10 {
+        margin-right: 10px;
+      }
+      .w-300 {
+        width: 300px;
+      }
+      .p-10 {
+        padding: 10px;
+      }
+      .p-30 {
+        padding: 30px;
+      }
+      .horiz *, .verti * {
+        flex-shrink: 0;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .top-0 {
+        top: 0;
+      }
+
+      /* STYLES */
+      .scrim {
+        background: rgba(0,0,0,0.4)
+      }
+      .card {
+        background: white;
+        box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.4);
+        border-radius: 8px;
+      }
+      .whitetext {
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+
+    <div id="app"></div>
+
+
+    <div id="loginWindow" class="absolute top-0 scrim verti w-window h-window items-center" style="visibility: hidden">
+      <div class="horiz items-center">
+        <h1 class="whitetext mr-10 p-10">Please, Login before feeding your Reef</h1>
+        <img id="closeLogin" src="src/assets/close.png" style="width: 24px; height: 24px">
+      </div>
+      <form id="login" class="verti w-300 p-30 card">
+        <input id="passphrase" class="mb-10" type="password" placeholder="Passphrase" required autofocus/>
+        <input id="encryptedKey" class="mb-10" type="password" placeholder="EncryptedKey" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+</html>

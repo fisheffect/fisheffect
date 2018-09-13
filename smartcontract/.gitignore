@@ -1,0 +1,12 @@
+**.vs
+
+FishEffectTests/obj
+CrowdSale/obj
+CrowdSale/bin
+FishEffect/bin
+FishEffect/obj
+FishEffectHelperProject/bin
+FishEffectHelperProject/obj
+FishEffectTests/bin
+packages
+ScriptHashConverter/obj
