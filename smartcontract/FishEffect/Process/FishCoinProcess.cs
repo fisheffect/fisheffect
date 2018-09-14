@@ -117,7 +117,7 @@ namespace FishEffect
 			{
 				returnValue = totalSupplyInBytes.AsBigInteger();
 			}
-			Runtime.Log(""+returnValue);
+			Runtime.Log("total supply: "+returnValue);
 
 			Runtime.Log("Total Supply ok");
 			return returnValue;

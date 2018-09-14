@@ -35,22 +35,32 @@ namespace FishEffect
 			return true;
 		}
 
-		public static byte[] MintNewFish(byte[] from)
+		public static byte[] MintNewFish(byte[] from, BigInteger consensusData, BigInteger randomStep)
 		{
 			byte[] fishDna = new byte[0];
-
-			// First 4 proprierties are random: Vegan-Carnivorous, Size, BellyType, BackType
-			for (int i = 0; i < 4; i++)
+            // First 4 proprierties are random: Vegan-Carnivorous, Size, BellyType, BackType
+            for (int i = 0; i < 4; i++)
 			{
-				byte randomByteValue = (byte)BlockchainHelper.Random();
-				fishDna.Concat(new byte[] { randomByteValue });
-			}
-
+                BigInteger bigStepPlusI = randomStep + i;
+                BigInteger randomNumber = BlockchainHelper.Random(consensusData, bigStepPlusI);
+                byte randomByteValue = (byte) randomNumber;
+                byte[] randomByteArray = new byte[] { randomByteValue };
+                fishDna.Concat(randomByteArray);
+            }
+			
+			
+			Runtime.Log("from:");
+			Runtime.Log(from.AsString());
+			BigInteger fromBigInteger = from.AsBigInteger();
 			// The other properties comes from the aquarium: FinType, HeadType
 			for (int i = 4; i < from.Length; i++)
 			{
-				fishDna.Concat(new byte[] { from[i] });
-			}
+                byte fromI = fromBigInteger.AsByteArray()[i];
+				Runtime.Log("fromI:");
+				Runtime.Log(new byte[] { (byte)fromI }.AsString());
+                fishDna.Concat(new byte[] { (byte)fromI });
+                Runtime.Log(fishDna.AsString());
+            }
 
 			return fishDna;
 
@@ -92,48 +102,63 @@ namespace FishEffect
 			}
 
 
-			//FISH DNA
-			// 6 propriedades
-			// Cada propriedade utilizará 1 byte como tipo
-			// O valor poderá ser entre 0 a 7
-			//Vegetariano 0 a 6, 7 carnivoro
-			//Size
-			//BellyType
-			//BackType
-			//TopBottomFins
-			//HeadType
-			//Tail
-			//SideFin
-			
-			// if there is less then 2 fishs in the aquarium
-			if (fishs.Length < 2)
+            //FISH DNA
+            // 6 propriedades
+            // Cada propriedade utilizará 1 byte como tipo
+            // O valor poderá ser entre 0 a 7
+            //Vegetariano 0 a 6, 7 carnivoro
+            //Size
+            //BellyType
+            //BackType
+            //TopBottomFins
+            //HeadType
+            //Tail
+            //SideFin
+
+            BigInteger consensusData = BlockchainHelper.GetConsensusData();
+            BigInteger randomStep = BlockchainHelper.GetRandomStep();
+            BigInteger aRandom = 0;
+
+            // if there is less then 2 fishs in the aquarium
+            if (fishs.Length < 2)
 			{
 				Runtime.Log("Menos de 2 peixes");
-				//25% de chance de surgir um peixe ao acaso que estava querendo comida e achou um aquario vazio com comida fácil
-				if (BlockchainHelper.Random() % 4 == 0)
-				{
-					byte[] fishDna = MintNewFish(from);
+                //25% de chance de surgir um peixe ao acaso que estava querendo comida e achou um aquario vazio com comida fácil
+                aRandom = BlockchainHelper.Random(consensusData, randomStep);
+                randomStep = randomStep + 1;
+                //if (aRandom % 4 == 0)
+				//{
+                    aRandom = BlockchainHelper.Random(consensusData, randomStep);
+                    randomStep = randomStep + 1;
+                    byte[] fishDna = MintNewFish(from, consensusData, randomStep);
+                    randomStep = randomStep + 4;
 					NewFish(from, fishDna);
 					Notifier.ImigrantFish(from, fishDna);
-				}
+				//}
 			}
 
 			// if there is 2 or more fishs in the aquarium
 			else
 			{
-				//16.6% de chance de 2 peixes se acasalarem
-				if (BlockchainHelper.Random() % 6 == 0)
+                //16.6% de chance de 2 peixes se acasalarem
+                aRandom = BlockchainHelper.Random(consensusData, randomStep);
+                randomStep = randomStep + 1;
+                if (aRandom % 6 == 0)
 				{
 					byte[] fishDna = new byte[20];
-					
-					// get a random fish to be the father
-					int indexFather = (int) (BlockchainHelper.Random() % fishs.Length);
+
+                    // get a random fish to be the father
+                    aRandom = BlockchainHelper.Random(consensusData, randomStep);
+                    randomStep = randomStep + 1;
+                    int indexFather = (int) (aRandom % fishs.Length);
 					int indexMother;
 
 					do
 					{
-						// get a random fish to be the mother, but a different fish of the father
-						indexMother = (int) (BlockchainHelper.Random() % fishs.Length);
+                        // get a random fish to be the mother, but a different fish of the father
+                        aRandom = BlockchainHelper.Random(consensusData, randomStep);
+                        randomStep = randomStep + 1;
+                        indexMother = (int) (aRandom % fishs.Length);
 					} while (indexFather == indexMother);
 
 					byte[] father = fishs[indexFather];
@@ -141,8 +166,10 @@ namespace FishEffect
 
 					for (int i = 0; i < from.Length; i++)
 					{
-						// Mix DNA
-						if (BlockchainHelper.Random() % 2 > 0)
+                        // Mix DNA
+                        aRandom = BlockchainHelper.Random(consensusData, randomStep);
+                        randomStep = randomStep + 1;
+                        if (aRandom % 2 > 0)
 						{
 							fishDna[i] = father[i];
 						}
@@ -181,8 +208,10 @@ namespace FishEffect
 							int indexEatenFish;
 							do
 							{
-								// get a random fish to be eaten, but a different fish of the father and the mother
-								indexEatenFish = (int)(BlockchainHelper.Random() % fishs.Length);
+                                // get a random fish to be eaten, but a different fish of the father and the mother
+                                aRandom = BlockchainHelper.Random(consensusData, randomStep);
+                                randomStep = randomStep + 1;
+                                indexEatenFish = (int)(aRandom % fishs.Length);
 							} while (indexEatenFish == indexMother || indexEatenFish == indexFather);
 
 							byte[] eatenFish = fishs[indexEatenFish];
@@ -195,6 +224,8 @@ namespace FishEffect
 
 				}
 			}
+
+            BlockchainHelper.UpdateRandomStep(randomStep);
 
 			return false;
 		}

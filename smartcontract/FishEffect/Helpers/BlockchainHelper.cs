@@ -9,26 +9,39 @@ namespace FishEffect.Helpers
 {
 	class BlockchainHelper
 	{
-		public static BigInteger _consensusData = 0;
-		
-		public static BigInteger Random()
+        public static BigInteger GetConsensusData()
+        {
+            BigInteger fixedRandomNumber = (ulong)83789237598;
+            // return Blockchain.GetHeader(Blockchain.GetHeight()).ConsensusData;
+            return fixedRandomNumber;
+        }
+
+        public static BigInteger GetRandomStep()
+        {
+            return UtilityDao.GetRandomStep();
+        }
+
+        public static void UpdateRandomStep(BigInteger currentStep)
+        {
+            UtilityDao.UpdateRandomStep(currentStep);
+        }
+
+        public static BigInteger Random(BigInteger consensusData, BigInteger currentStep)
 		{
 			Runtime.Log("Random called");
-			if (_consensusData == 0)
-			{
-				_consensusData = Blockchain.GetHeader(Blockchain.GetHeight()).ConsensusData;
-			}
 
-			BigInteger randomStep = UtilityDao.GetRandomStep();
-			byte[] randomBytesArray = _consensusData.AsByteArray();
+			byte[] randomBytesArray = consensusData.AsByteArray();
+
 			BigInteger randomNumberByteSize = randomBytesArray.Length;
-			byte randomByte = randomBytesArray[(int)randomStep % (int)randomNumberByteSize];
+
+            BigInteger randomCursor = currentStep % randomNumberByteSize;
+
+            byte randomByte = randomBytesArray[(int)randomCursor];
+
 			BigInteger randomNumber = randomByte;
 
-			randomStep = randomStep + 1;
-			UtilityDao.UpdateRandomStep(randomStep);
-
-			//randomNumber = randomNumber % byte.MaxValue;
+			Runtime.Log("randomNumber: ");
+			Runtime.Log(randomNumber.AsByteArray().AsString());
 
 			return randomNumber;
 		}

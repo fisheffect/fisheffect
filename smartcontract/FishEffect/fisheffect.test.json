@@ -1,156 +1,164 @@
 ﻿{
-	"cases": [
-		{
-			"name": "NEP-5_symbol",
-			"method": "Main",
-			"params": [
-				"symbol",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_name",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_decimals",
-			"method": "Main",
-			"params": [
-				"decimals",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_totalSupply",
-			"method": "Main",
-			"params": [
-				"totalSupply",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "Deploy",
-			"method": "Main",
-			"params": [
-				"deploy",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_balanceOf",
-			"method": "Main",
-			"params": [
-				"balanceOf",
-				[ "0xea2b832323fb5e69e7359bb559c1dd902da800a5" ]
-			]
-		},
-		{
-			"name": "NEP-5_transfer",
-			"method": "Main",
-			"params": [
-				"transfer",
-				[ "0xea2b832323fb5e69e7359bb559c1dd902da800a5", "0x4117355e8433a19e34f984a36ccf6368c73513b5", 100 ]
-			]
-		},
-		{
-			"name": "FeedReef",
-			"method": "Main",
-			"params": [
-				"feedReef",
-				[ "0xea2b832323fb5e69e7359bb559c1dd902da800a5"]
-			]
-		},
-		{
-			"name": "kycRegister",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "kycStatus",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_name",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_name",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_name",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_name",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_name",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_name",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "NEP-5_name",
-			"method": "Main",
-			"params": [
-				"name",
-				[ 0 ]
-			]
-		},
-		{
-			"name": "Transfer",
-			"method": "Main",
-			"params": [
-				"transfer",
-				[ "0xea2b832323fb5e69e7359bb559c1dd902da800a5", "0xea2b832323fb5e69e7359bb559c1dd902da800a5", 10 ]
-			]
-		},
-		{
-			"name": "BalanceOf",
-			"method": "Main",
-			"params": [
-				"transfer",
-				[ "0xea2b832323fb5e69e7359bb559c1dd902da800a5", "0xea2b832323fb5e69e7359bb559c1dd902da800a5", 10 ]
-			]
-		}
-	]
+    "cases": [
+        {
+            "name": "NEP-5_symbol",
+            "method": "Main",
+            "params": [
+                "symbol",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_name",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_decimals",
+            "method": "Main",
+            "params": [
+                "decimals",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_totalSupply",
+            "method": "Main",
+            "params": [
+                "totalSupply",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "Deploy",
+            "method": "Main",
+            "params": [
+                "deploy",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_balanceOf",
+            "method": "Main",
+            "params": [
+                "balanceOf",
+                [ "0xea2b832323fb5e69e7359bb559c1dd902da800a5" ]
+            ]
+        },
+        {
+            "name": "NEP-5_transfer",
+            "method": "Main",
+            "params": [
+                "transfer",
+                [ "0xea2b832323fb5e69e7359bb559c1dd902da800a5", "0x4117355e8433a19e34f984a36ccf6368c73513b5", 100 ]
+            ]
+        },
+        {
+            "name": "NEP-5_transfer-back",
+            "method": "Main",
+            "params": [
+                "transfer",
+                [ "0x4117355e8433a19e34f984a36ccf6368c73513b5", "0xea2b832323fb5e69e7359bb559c1dd902da800a5", 100 ]
+            ]
+        },
+        {
+            "name": "FeedReef",
+            "method": "Main",
+            "params": [
+                "feedReef",
+                [ "0xea2b832323fb5e69e7359bb559c1dd902da800a5" ]
+            ]
+        },
+        {
+            "name": "kycRegister",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "kycStatus",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_name",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_name",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_name",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_name",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_name",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_name",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "NEP-5_name",
+            "method": "Main",
+            "params": [
+                "name",
+                [ 0 ]
+            ]
+        },
+        {
+            "name": "Transfer",
+            "method": "Main",
+            "params": [
+                "transfer",
+                [ "0xea2b832323fb5e69e7359bb559c1dd902da800a5", "0xea2b832323fb5e69e7359bb559c1dd902da800a5", 10 ]
+            ]
+        },
+        {
+            "name": "BalanceOf",
+            "method": "Main",
+            "params": [
+                "transfer",
+                [ "0xea2b832323fb5e69e7359bb559c1dd902da800a5", "0xea2b832323fb5e69e7359bb559c1dd902da800a5", 10 ]
+            ]
+        }
+    ]
 }
