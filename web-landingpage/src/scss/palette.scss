@@ -1,0 +1,231 @@
+@import "variables";
+@import "function";
+
+/**
+Name your palette color in:
+http://chir.ag/projects/name-that-color
+ */
+
+// Primary Color
+.pal-primary {
+  @include palette($primary-color);
+}
+
+// Secondary Color
+.pal-secondary {
+  @include palette($secondary-color);
+}
+
+// Tertiary Color
+.pal-tertiary {
+  @include palette($tertiary-color);
+}
+
+// Success Color
+.pal-success {
+  @include palette($success-color);
+}
+
+// Warning Color
+.pal-warning {
+  @include palette($warning-color);
+}
+
+// Danger Color
+.pal-danger {
+  @include palette($danger-color);
+}
+
+// Light Background Color
+.pal-light-background {
+  @include palette($light-background-color);
+}
+
+// Dark Background Color
+.pal-dark-background {
+  @include palette($dark-background-color);
+}
+
+.pal-alto {
+  @include palette(#d8d8d8);
+}
+
+.pal-navy {
+  @include palette(#00242f);
+}
+
+.pal-navy-20 {
+  @include palette(rgba(0, 36, 47, 0.2));
+}
+
+.pal-ocean-blue {
+  @include palette(#0071af);
+}
+
+.pal-pinkish-grey {
+  @include palette(#c0c0c0);
+}
+
+.pal-dark-teal {
+  @include palette(#003951);
+}
+
+.pal-medium-blue {
+  @include palette(#306cba);
+}
+
+.pal-sun-yellow {
+  @include palette(#f8e71c);
+}
+
+.pal-orange-yellow {
+  @include palette(#ffaa00);
+}
+
+.pal-light-navy-blue {
+  @include palette(#2f5888);
+}
+
+.pal-blue-grey {
+  @include palette(#8492a5);
+}
+
+.pal-charcoal-grey {
+  @include palette(#303c42);
+}
+
+.pal-pale-teal {
+  @include palette(#89c3b6);
+}
+
+.pal-bright-sky-blue-70 {
+  @include palette(rgba(1, 184, 243, 0.70));
+}
+
+.pal-light-tan {
+  @include palette(#f9f4a9);
+}
+
+.pal-rouge {
+  @include palette(#af1f23);
+}
+
+.pal-robins-egg-blue {
+  @include palette(#b0e2f6);
+}
+
+.pal-duck-egg-blue {
+  @include palette(#c2e7f2);
+}
+
+.pal-manilla {
+  @include palette(#fff48d);
+}
+
+.pal-pastel-green {
+  @include palette(#b3ff94);
+}
+
+.pal-dull-red {
+  @include palette(#b24242);
+}
+
+.pal-azul {
+  @include palette(#3075e7);
+}
+
+.pal-light-sage {
+  @include palette(#b8e986);
+}
+
+.pal-robin-egg-blue {
+  @include palette(#90f9ff);
+}
+
+.pal-teal-blue {
+  @include palette(#00a2ac);
+}
+
+/** White Palette **/
+/********************************************************/
+.pal-white {
+  @include palette(#ffffff);
+}
+
+.pal-white-10 {
+  @include palette(rgba(255, 255, 255, 0.1));
+}
+
+.pal-white-20 {
+  @include palette(rgba(255, 255, 255, 0.2));
+}
+
+.pal-white-30 {
+  @include palette(rgba(255, 255, 255, 0.3));
+}
+
+.pal-white-40 {
+  @include palette(rgba(255, 255, 255, 0.4));
+}
+
+.pal-white-50 {
+  @include palette(rgba(255, 255, 255, 0.5));
+}
+
+.pal-white-60 {
+  @include palette(rgba(255, 255, 255, 0.6));
+}
+
+.pal-white-70 {
+  @include palette(rgba(255, 255, 255, 0.7));
+}
+
+.pal-white-80 {
+  @include palette(rgba(255, 255, 255, 0.8));
+}
+
+.pal-white-90 {
+  @include palette(rgba(255, 255, 255, 0.9));
+}
+
+/** Black Palette **/
+/********************************************************/
+.pal-black {
+  @include palette(#000000);
+}
+
+.pal-black-10 {
+  @include palette(rgba(0, 0, 0, 0.1));
+}
+
+.pal-black-20 {
+  @include palette(rgba(0, 0, 0, 0.2));
+}
+
+.pal-black-30 {
+  @include palette(rgba(0, 0, 0, 0.3));
+}
+
+.pal-black-40 {
+  @include palette(rgba(0, 0, 0, 0.4));
+}
+
+.pal-black-50 {
+  @include palette(rgba(0, 0, 0, 0.5));
+}
+
+.pal-black-60 {
+  @include palette(rgba(0, 0, 0, 0.6));
+}
+
+.pal-black-70 {
+  @include palette(rgba(0, 0, 0, 0.7));
+}
+
+.pal-black-80 {
+  @include palette(rgba(0, 0, 0, 0.8));
+}
+
+.pal-black-90 {
+  @include palette(rgba(0, 0, 0, 0.9));
+}
