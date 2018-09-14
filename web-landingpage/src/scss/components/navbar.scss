@@ -1,0 +1,210 @@
+@import "../variables";
+
+nav {
+  @extend .pal-white.text;
+  @extend .pal-ocean-blue.bg;
+  @extend .pal-black-50.box-shadow.deep-20;
+
+  position: fixed;
+  width: 100vw;
+
+  font-size: 16px;
+
+  height: 90px;
+  display: flex;
+  align-content: center;
+
+  > .container {
+    display: flex;
+
+    @media screen and (max-width: $display-medium) {
+      flex: 1;
+    }
+  }
+
+  .brand {
+    font-size: 20px;
+    margin: 0 24px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+
+    .btn {
+      padding: 0;
+      height: auto;
+      line-height: 0;
+      border-radius: 0;
+      background: none;
+
+      &:hover, &:focus {
+        background: none;
+        box-shadow: none;
+      }
+
+      img {
+        padding: 10px;
+        height: 90px;
+      }
+    }
+
+    @media screen and (max-width: $display-large) {
+      flex: 1;
+    }
+  }
+
+  .slot-1 {
+    flex: 1;
+    margin: auto 16px;
+
+    button {
+      @extend .flat.contrast;
+      margin: #{$padding-base / 4} 0;
+    }
+
+    @media screen and (max-width: $display-large) {
+      display: none;
+    }
+  }
+
+  .slot-2 {
+    flex: 0 auto;
+    margin: auto 16px;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    li {
+      margin: auto 2px;
+    }
+
+    button {
+      @extend .flat;
+    }
+
+    @media screen and (max-width: $display-extra-large) {
+      display: none;
+    }
+  }
+
+  .slot-3 {
+    flex: 0 auto;
+    margin: auto 16px;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    li {
+      margin: auto 2px;
+    }
+
+    @media screen and (max-width: $display-extra-large) {
+      display: none;
+    }
+  }
+
+  .menu-icon {
+    flex: 0 auto;
+    margin: auto 16px;
+    display: none;
+
+    @media screen and (max-width: $display-extra-large) {
+      display: block;
+    }
+  }
+
+  ul {
+    display: inline-flex;
+    align-items: center;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+    text-transform: uppercase;
+
+    li {
+      margin: auto 4px;
+      height: 100%;
+
+      &.active {
+        button {
+          @extend .pal-white.text;
+        }
+      }
+    }
+  }
+
+  &.sidebar {
+    @extend .pal-ocean-blue.bg;
+    @extend .pal-black.box-shadow;
+
+    position: fixed;
+    padding: 10px 0;
+    height: auto;
+    min-height: 100vh;
+
+    top: 0;
+    right: 0;
+    z-index: 4;
+
+    width: 50%;
+    max-width: 350px;
+    min-width: 250px;
+
+    flex-direction: column;
+
+    .brand {
+      flex: 0;
+      display: flex;
+      justify-content: center;
+
+      .btn {
+        margin: 0;
+        line-height: 0;
+      }
+    }
+    .slot-1 {
+      display: flex;
+      align-items: center;
+
+      button {
+        width: 100%;
+        text-align: right;
+      }
+
+      ul {
+        display: block;
+        width: 100%;
+        li {
+          margin: 0;
+        }
+      }
+    }
+    .slot-2 {
+      display: flex;
+      justify-content: center;
+    }
+    .slot-3 {
+      display: flex;
+      justify-content: center;
+    }
+    .menu-icon {
+      display: block
+    }
+  }
+
+}
+
+aside {
+  position: relative;
+  .outbound {
+    @extend .pal-black-80.bg;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+  }
+}
