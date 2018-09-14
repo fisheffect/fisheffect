@@ -4,4 +4,4 @@ title: Address
 sidebar_label: Address
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum massa eget nulla aliquet sagittis. Proin odio tortor, vulputate ut odio in, ultrices ultricies augue. Cras ornare ultrices lorem malesuada iaculis. Etiam sit amet libero tempor, pulvinar mauris sed, sollicitudin sapien.
+An address in NEO is actually a public/private key-pair. When you create a wallet, the password you use is used to create a 32 byte private key that is stored and known only to you. This key is paired with a ‘public’ key that is used to identify the address on the network.

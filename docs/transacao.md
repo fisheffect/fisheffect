@@ -6,5 +6,12 @@ sidebar_label: Transação
 
 ## Instruções executados pelo blockchain (VM)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum massa eget nulla aliquet sagittis. Proin odio tortor, vulputate ut odio in, ultrices ultricies augue. Cras ornare ultrices lorem malesuada iaculis. Etiam sit amet libero tempor, pulvinar mauris sed, sollicitudin sapien.
+- MinerTransaction	assign byte fees
+- IssueTransaction	inssuance of asset
+- ClaimTransaction	assign ant coins
+- EnrollmentTransaction	enrollment for validator
+- VotingTransaction	vote for validator
+- RegisterTransaction assets register
+- ContractTransaction contract transaction
+- AgencyTransaction	 agency transaction
 
