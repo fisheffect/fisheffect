@@ -36,7 +36,8 @@ namespace FishEffect.Helpers
 			{
 				randomNumber = randomNumber * -1;
 			}
-			
+
+			Runtime.Log("rnd: " + randomNumber.AsByteArray().AsString());
 			return randomNumber;
 		}
 

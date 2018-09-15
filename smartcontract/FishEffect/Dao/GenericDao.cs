@@ -11,11 +11,25 @@ namespace FishEffect
 
 		public static byte[] Get(byte[] key)
 		{
-			return Storage.Get(Storage.CurrentContext, key);
+			byte[] res = Storage.Get(Storage.CurrentContext, key);
+			Runtime.Log(" ");
+			Runtime.Log("GET key: ");
+			Runtime.Log(key.AsString());
+			Runtime.Log("GET value: ");
+			Runtime.Log(res.AsString());
+			Runtime.Log("----------");
+
+			return res;
 		}
 
 		public static void Put(byte[] key, byte[] value)
 		{
+			Runtime.Log(" ");
+			Runtime.Log("PUT key: ");
+			Runtime.Log(key.AsString());
+			Runtime.Log("PUT value: ");
+			Runtime.Log(value.AsString());
+			Runtime.Log("----------");
 			Storage.Put(Storage.CurrentContext, key, value);
 		}
 	}

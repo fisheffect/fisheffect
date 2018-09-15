@@ -50,6 +50,7 @@
     <Compile Include="Dao\ReefDao.cs" />
     <Compile Include="Dao\UtilityDao.cs" />
     <Compile Include="Helpers\BlockchainHelper.cs" />
+    <Compile Include="Helpers\ByteArrHelper.cs" />
     <Compile Include="Helpers\FishManager.cs" />
     <Compile Include="Helpers\TransactionHelper.cs" />
     <Compile Include="Helpers\ListManager.cs" />
@@ -59,7 +60,6 @@
     <Compile Include="Process\FishCoinProcess.cs" />
     <Compile Include="Application\FishEffect.cs" />
     <Compile Include="Dao\GenericDao.cs" />
-    <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Helpers\Notifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

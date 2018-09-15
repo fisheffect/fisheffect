@@ -10,6 +10,11 @@ namespace FishEffect.Helpers
     {
         public static BigInteger GetLength(byte[] list, BigInteger itemSize)
         {
+			if (itemSize == 0)
+	        {
+		        return 0;
+	        }
+
 	        return list.Length / itemSize;
         }
 
@@ -21,36 +26,38 @@ namespace FishEffect.Helpers
 
 		public static byte[] Add(byte[] list, byte[] newItem)
 		{
+			if (list == null)
+			{
+				list = new byte[0];
+			}
+			
 			byte[] result = list.Concat(newItem);
+			
+			Runtime.Log(" ");
+			Runtime.Log("L:item added:");
+			Runtime.Log(newItem.AsString());
+			Runtime.Log("L:is now:");
+			Runtime.Log(result.AsString());
+			Runtime.Log("------------");
 			return result;
 		}
 
 		public static byte[] RemoveAt(byte[] list, BigInteger itemSize, BigInteger position)
 		{
+			Runtime.Log("L:item removed pos: "+position.AsByteArray().AsString());
 			BigInteger start = 0;
 			BigInteger middle1 = itemSize * position;
 			BigInteger middle2 = (itemSize + 1) * position;
-			BigInteger end = list.Length;
-			
-			byte[] firstPart = list.Range((int) start, (int) middle1);
-			byte[] removingItem = list.Range((int) middle1, (int) itemSize); // not used
-			byte[] lastPart = list.Range((int) middle2, (int) (end - middle2));
-
-			return firstPart.Concat(lastPart);
+			return ByteArrHelper.InTheMiddle(list, new byte[0], start, middle1, middle2);
 		}
 
 		public static byte[] EditAt(byte[] list, BigInteger itemSize, BigInteger position, byte[] newPart)
 		{
+			Runtime.Log("L:item edited pos: "+position.AsByteArray().AsString() + " - value: "+ newPart.AsString());
 			BigInteger start = 0;
 			BigInteger middle1 = itemSize * position;
 			BigInteger middle2 = (itemSize + 1) * position;
-			BigInteger end = list.Length;
-			
-			byte[] firstPart = list.Range((int) start, (int) middle1);
-			byte[] removingItem = list.Range((int) middle1, (int) itemSize); // not used
-			byte[] lastPart = list.Range((int) middle2, (int) (end - middle2));
-
-			return firstPart.Concat(newPart).Concat(lastPart);
+			return ByteArrHelper.InTheMiddle(list, newPart, start, middle1, middle2);
 		}
 
 		public static BigInteger IndexOfExactly(byte[] list, BigInteger itemSize, byte[] part)
