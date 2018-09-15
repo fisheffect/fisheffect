@@ -10,7 +10,7 @@ namespace FishEffect
 	{
 		private static byte[] KeyOfReefFishesAlive(byte[] scriptHash)
 		{
-			return AppGlobals.PrefixOfReefFishsAlive.Concat(scriptHash);
+			return AppGlobals.PrefixOfReefFishesAlive.Concat(scriptHash);
 		}
 
 		public static byte[] GetReefFishesAlive(byte[] reef)
@@ -27,7 +27,7 @@ namespace FishEffect
 		
 		private static byte[] KeyOfReefFishesDead(byte[] scriptHash)
 		{
-			return AppGlobals.PrefixOfReefFishsDead.Concat(scriptHash);
+			return AppGlobals.PrefixOfReefFishesDead.Concat(scriptHash);
 		}
 
 		public static byte[] GetReefFishesDead(byte[] reef)

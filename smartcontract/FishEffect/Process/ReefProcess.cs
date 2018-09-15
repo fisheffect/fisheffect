@@ -96,7 +96,6 @@ namespace FishEffect
 			// variables used in the whole method
 			BigInteger currentBlockHeight = BlockchainHelper.GetHeight();
 			byte[] fishesAlive = ReefDao.GetReefFishesAlive(reef); // fishes alive on the reef
-			byte[] fishesDead = ReefDao.GetReefFishesDead(reef); // fishes alive on the reef
 			BigInteger fishesAliveLength = ListManager.GetLength(fishesAlive, FishManager.GetSize());
 			
 			Runtime.Log(" ");
@@ -249,7 +248,10 @@ namespace FishEffect
 							// removing the prey from alive list (after everything, to not lose the right position after removing)
 							fishesAlive = ListManager.RemoveAt(fishesAlive, FishManager.GetSize(), indexPrey);
 							fishesAliveLength = fishesAliveLength - 1;
+							
+							byte[] fishesDead = ReefDao.GetReefFishesDead(reef); // fishes alive on the reef
 							fishesDead = ListManager.Add(fishesDead, prey);
+							ReefDao.UpdateReefFishesDead(reef, fishesDead);
 							
 							Notifier.FishEaten(reef, prey, predator);
 						}
@@ -273,7 +275,6 @@ namespace FishEffect
 
 			fishesAlive = IncrementQuantityOfFeeds(fishesAlive, fishesAliveLength);
 			ReefDao.UpdateReefFishesAlive(reef, fishesAlive);
-			ReefDao.UpdateReefFishesDead(reef, fishesDead);
 			FishCoinDao.SetTotalSupply(balance - fishesAliveLength);
 
             BlockchainHelper.UpdateRandomStep(randomStep);

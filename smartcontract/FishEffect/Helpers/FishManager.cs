@@ -30,10 +30,8 @@ namespace FishEffect.Helpers
 		    byte[] quantityOfFeeds = new byte[] {0};
 		    newFish = newFish.Concat(quantityOfFeeds); // how many times ate
 
-		    do
-		    {
-			    newFish = newFish.Concat(new byte[] {0});
-		    } while (newFish.Length < GetSize());
+		    BigInteger remainingSize = newFish.Length - GetSize();
+		    newFish = newFish.Concat(new byte[(int) remainingSize]);
 
 		    return newFish;
 	    }
@@ -55,7 +53,8 @@ namespace FishEffect.Helpers
 			    else
 			    {
 				    newFish = newFish.Concat(mother.Range(i, 1));
-			    }				
+			    }
+			    
 		    }
 
 		    BigInteger blockHeight = Blockchain.GetHeight();
@@ -64,10 +63,9 @@ namespace FishEffect.Helpers
 		    byte[] quantityOfFeeds = new byte[] {0};
 		    newFish = newFish.Concat(quantityOfFeeds); // how many times ate
 
-		    do
-		    {
-			    newFish = newFish.Concat(new byte[] {0});
-		    } while (newFish.Length < GetSize());
+		    BigInteger remainingSize = newFish.Length - GetSize();
+		    byte[] emptyBytes = AppGlobals.EmptyBytes.Range(0, (int)remainingSize);
+		    newFish = newFish.Concat(emptyBytes);
 
 		    return newFish;
 	    }
