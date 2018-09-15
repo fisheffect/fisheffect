@@ -11,9 +11,7 @@ namespace FishEffect.Helpers
 	{
         public static BigInteger GetConsensusData()
         {
-            BigInteger fixedRandomNumber = (ulong)83789237598;
-            // return Blockchain.GetHeader(Blockchain.GetHeight()).ConsensusData;
-            return fixedRandomNumber;
+            return Blockchain.GetHeader(Blockchain.GetHeight()).ConsensusData;
         }
 
         public static BigInteger GetRandomStep()
@@ -28,24 +26,23 @@ namespace FishEffect.Helpers
 
         public static BigInteger Random(BigInteger consensusData, BigInteger currentStep)
 		{
-			Runtime.Log("Random called");
-
 			byte[] randomBytesArray = consensusData.AsByteArray();
-
 			BigInteger randomNumberByteSize = randomBytesArray.Length;
-
             BigInteger randomCursor = currentStep % randomNumberByteSize;
-
             byte randomByte = randomBytesArray[(int)randomCursor];
-
 			BigInteger randomNumber = randomByte;
 
-			Runtime.Log("randomNumber: ");
-			Runtime.Log(randomNumber.AsByteArray().AsString());
-
+			if (randomNumber < 0)
+			{
+				randomNumber = randomNumber * -1;
+			}
+			
 			return randomNumber;
 		}
 
-		
+		public static BigInteger GetHeight()
+		{
+			return Blockchain.GetHeight();
+		}
 	}
 }

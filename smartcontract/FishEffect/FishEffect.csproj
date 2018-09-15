@@ -47,12 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\AppGlobals.cs" />
-    <Compile Include="Dao\AquariumDao.cs" />
+    <Compile Include="Dao\ReefDao.cs" />
     <Compile Include="Dao\UtilityDao.cs" />
     <Compile Include="Helpers\BlockchainHelper.cs" />
+    <Compile Include="Helpers\FishManager.cs" />
     <Compile Include="Helpers\TransactionHelper.cs" />
+    <Compile Include="Helpers\ListManager.cs" />
     <Compile Include="Model\TransactionAttachments.cs" />
-    <Compile Include="Process\AquariumProcess.cs" />
+    <Compile Include="Process\ReefProcess.cs" />
     <Compile Include="Dao\FishCoinDao.cs" />
     <Compile Include="Process\FishCoinProcess.cs" />
     <Compile Include="Application\FishEffect.cs" />

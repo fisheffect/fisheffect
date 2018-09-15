@@ -15,10 +15,6 @@ namespace FishEffect
 		#region Enterprise Assets
 		#endregion
 
-		#region Database Prefix
-
-		#endregion
-
 		public static Object Main(string operation, params object[] args)
 		{
 			if (Runtime.Trigger == TriggerType.Verification)
@@ -83,7 +79,7 @@ namespace FishEffect
 			}
 			else if (operation == "transferFish")
 			{
-				returnValue = AquariumProcess.TransferFish(args);
+				returnValue = ReefProcess.TransferFish(args);
 			}
 			else if (operation == "kycRegister")
 			{
@@ -95,53 +91,18 @@ namespace FishEffect
 			}
 			else if (operation == "feedReef")
 			{
-				returnValue = AquariumProcess.FeedReef(args);
+				returnValue = ReefProcess.FeedReef(args);
 			}
-			else if (operation == "getFish")
+			else if (operation == "getReefFishesAlive")
 			{
-				//returnValue = AquariumProcess.GetFish(args);
+				returnValue = ReefProcess.GetReefFishesAlive(args);
 			}
-			else if (operation == "random")
+			else if (operation == "getReefFishesDead")
 			{
-				return Random();
+				returnValue = ReefProcess.GetReefFishesDead(args);
 			}
 
 			return returnValue;
-		}
-
-
-		public static object Random()
-		{
-			if (_consensusData == 0)
-			{
-				_consensusData = Blockchain.GetHeader(Blockchain.GetHeight()).ConsensusData;
-				//ulong teste = consensusData;
-				//BigInteger novoNumbero = teste;
-				//BigInteger quebrou = novoNumbero.AsByteArray().Length;
-				//_consensusData = novoNumbero;
-			}
-
-			//Runtime.Log("Consensus Data:" + _consensusData);
-			//Runtime.Log("Consensus Data:" + _consensusData);
-			//byte[] randomBytesArray = _consensusData.AsByteArray();
-			//byte[] novoByteArray = new byte[2] {0x10, 0x11};
-
-			//novoByteArray.Concat(randomBytesArray);
-			//BigInteger randomNumberByteSize = 2;
-			//BigInteger randomNumber = new byte[1] { novoByteArray[(uint)_randomStep % (uint)randomNumberByteSize] }.AsBigInteger();
-			//_randomStep = _randomStep + 1;
-
-			//Runtime.Log("Random Number: " + randomNumber);
-			//return randomNumber;
-
-			//if (_randomStep < 10)
-			//{
-			//	Random();
-			//}
-
-			//BigInteger novoNumero = _consensusData + 10;
-
-			return _consensusData;
 		}
 		#endregion
 
