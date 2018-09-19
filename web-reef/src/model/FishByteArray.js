@@ -7,8 +7,8 @@ export default {
 
   getArraySize()
   {
-    return this.getSizeOfDna() + this.sizeOfBirthBlockHeight() + this.sizeOfQuantityOfFeeds() + this.sizeOfFedWithFishBlockHeight() +
-      this.sizeOfPredatorDna();
+    return this.getSizeOfDna() + this.sizeOfBirthBlockHeight() + this.sizeOfQuantityOfFeeds() + this.sizeOfFedWithFishBlockHeight()
+      // + this.sizeOfPredatorDna();
   },
 
   getIndexOfRandomDnaInfluence()

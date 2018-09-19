@@ -175,8 +175,8 @@ namespace FishEffect.Helpers
 
 	    public static BigInteger GetSize()
 	    {
-		    return GetSizeOfDna() + SizeOfBirthBlockHeight() + SizeOfQuantityOfFeeds() + SizeOfFedWithFishBlockHeight() +
-		           SizeOfPredatorDna();
+		    return GetSizeOfDna() + SizeOfBirthBlockHeight() + SizeOfQuantityOfFeeds() + SizeOfFedWithFishBlockHeight();
+		    // + SizeOfPredatorDna();
 	    }
 	    
 	    #endregion

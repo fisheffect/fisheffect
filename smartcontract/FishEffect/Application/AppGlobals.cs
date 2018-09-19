@@ -25,6 +25,7 @@ namespace FishEffect
 		public static readonly byte[] PrefixOfExchangedByScriptHash = "ExchangedByScriptHash".AsByteArray();
 		public static readonly byte[] PrefixOfReefFishesAlive = "ReefFishesAlive".AsByteArray();
 		public static readonly byte[] PrefixOfReefFishesDead = "ReefFishesDead".AsByteArray();
+		public static readonly byte[] PrefixOfBlockHeightFedReef = "BlockHeightFedReef".AsByteArray();
 		
 	}
 }
