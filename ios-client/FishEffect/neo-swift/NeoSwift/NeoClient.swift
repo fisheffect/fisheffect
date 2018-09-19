@@ -86,14 +86,8 @@ public class NeoClient {
     public static let sharedTest = NeoClient(network: .test)
     public static let sharedMain = NeoClient(network: .test)
     private init() {}
-    private let tokenInfoCache = NSCache<NSString, AnyObject>()
     
     enum RPCMethod: String {
-        case getBestBlockHash = "getbestblockhash"
-        case getBlock = "getblock"
-        case getBlockCount = "getblockcount"
-        case getBlockHash = "getblockhash"
-        case getConnectionCount = "getconnectioncount"
         case getTransaction = "getrawtransaction"
         case getTransactionOutput = "gettxout"
         case getUnconfirmedTransactions = "getrawmempool"
@@ -101,8 +95,6 @@ public class NeoClient {
         case validateAddress = "validateaddress"
         case getAccountState = "getaccountstate"
         case getAssetState = "getassetstate"
-        case getPeers = "getpeers"
-        case invokeFunction = "invokefunction"
         case invokeContract = "invokescript"
         //The following routes can't be invoked by calling an RPC server
         //We must use the wrapper for the nodes made by COZ
@@ -201,130 +193,6 @@ public class NeoClient {
         task.resume()
     }
     
-    public func getBestBlockHash(completion: @escaping (NeoClientResult<String>) -> ()) {
-        sendRequest(.getBestBlockHash, params: nil) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                guard let hash = response["result"] as? String else {
-                    completion(.failure(.invalidData))
-                    return
-                }
-                let result = NeoClientResult.success(hash)
-                completion(result)
-            }
-        }
-    }
-    
-    public func getBlockBy(hash: String, completion: @escaping (NeoClientResult<Block>) -> ()) {
-        sendRequest(.getBlock, params: [hash, 1]) { result in //figure out why you need the 1
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                let decoder = JSONDecoder()
-                guard let data = try? JSONSerialization.data(withJSONObject: (response["result"] as! JSONDictionary), options: .prettyPrinted),
-                    let block = try? decoder.decode(Block.self, from: data) else {
-                        completion(.failure(.invalidData))
-                        return
-                }
-                
-                let result = NeoClientResult.success(block)
-                completion(result)
-            }
-        }
-    }
-    
-    public func getBlockBy(index: Int64, completion: @escaping (NeoClientResult<Block>) -> ()) {
-        sendRequest(.getBlock, params: [index, 1]) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                let decoder = JSONDecoder()
-                guard let data = try? JSONSerialization.data(withJSONObject: (response["result"] as! JSONDictionary), options: .prettyPrinted),
-                    let block = try? decoder.decode(Block.self, from: data) else {
-                        completion(.failure(.invalidData))
-                        return
-                }
-                
-                let result = NeoClientResult.success(block)
-                completion(result)
-            }
-        }
-    }
-    
-    public func getBlockCount(completion: @escaping (NeoClientResult<Int64>) -> ()) {
-        sendRequest(.getBlockCount, params: nil) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                guard let count = response["result"] as? Int64 else {
-                    completion(.failure(.invalidData))
-                    return
-                }
-                
-                let result = NeoClientResult.success(count)
-                completion(result)
-            }
-        }
-    }
-    
-    public func getPeers(completion:  @escaping (NeoClientResult<GetPeersResult>) -> ()) {
-        sendRequest(.getPeers, params: nil) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                let decoder = JSONDecoder()
-                guard let data = try? JSONSerialization.data(withJSONObject: (response["result"] as! JSONDictionary), options: .prettyPrinted),
-                    let block = try? decoder.decode(GetPeersResult.self, from: data) else {
-                        completion(.failure(.invalidData))
-                        return
-                }
-                
-                let result = NeoClientResult.success(block)
-                completion(result)
-            }
-        }
-    }
-    
-    public func getBlockHash(for index: Int64, completion: @escaping (NeoClientResult<String>) -> ()) {
-        sendRequest(.getBlockHash, params: [index]) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                guard let hash = response["result"] as? String else {
-                    completion(.failure(.invalidData))
-                    return
-                }
-                
-                let result = NeoClientResult.success(hash)
-                completion(result)
-            }
-        }
-    }
-    
-    public func getConnectionCount(completion: @escaping (NeoClientResult<Int64>) -> ()) {
-        sendRequest(.getConnectionCount, params: nil) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                guard let count = response["result"] as? Int64 else {
-                    completion(.failure(.invalidData))
-                    return
-                }
-                
-                let result = NeoClientResult.success(count)
-                completion(result)
-            }
-        }
-    }
-    
     public func getTransaction(for hash: String, completion: @escaping (NeoClientResult<Transaction>) -> ()) {
         sendRequest(.getTransaction, params: [hash, 1]) { result in
             switch result {
@@ -397,27 +265,6 @@ public class NeoClient {
                 }
                 
                 let result = NeoClientResult.success(assets)
-                completion(result)
-            }
-        }
-    }
-    
-    public func getClaims(address: String, completion: @escaping(NeoClientResult<Claimable>) -> ()) {
-        let url = fullNodeAPI + address + "/" + apiURL.getClaims.rawValue
-        sendFullNodeRequest(url, params: nil) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                let decoder = JSONDecoder()
-                
-                guard let data = try? JSONSerialization.data(withJSONObject: (response["result"] as? JSONDictionary)!["data"], options: .prettyPrinted),
-                    let claims = try? decoder.decode(Claimable.self, from: data) else {
-                        completion(.failure(.invalidData))
-                        return
-                }
-                
-                let result = NeoClientResult.success(claims)
                 completion(result)
             }
         }
@@ -500,6 +347,22 @@ public class NeoClient {
         }
     }
     
+    public func sendFeedReef(with data: Data, completion: @escaping(NeoClientResult<Bool>) -> ()) {
+        sendRequest(.invokeContract, params: [data.fullHexString]) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let response):
+                guard let success = response["result"] as? Bool else {
+                    completion(.failure(.invalidData))
+                    return
+                }
+                let result = NeoClientResult.success(success)
+                completion(result)
+            }
+        }
+    }
+    
     public func invokeContract(with script: String, completion: @escaping(NeoClientResult<ContractResult>) -> ()) {
         sendRequest(.invokeContract, params: [script]) { result in
             switch result {
@@ -519,32 +382,6 @@ public class NeoClient {
                 
                 let result = NeoClientResult.success(contractResult)
                 completion(result)
-            }
-        }
-    }
-    
-    public func getTokenInfo(with scriptHash: String, completion: @escaping(NeoClientResult<NEP5Token>) -> ()) {
-        let cacheKey: NSString = scriptHash as NSString
-        if let tokenInfo = tokenInfoCache.object(forKey: cacheKey) as? NEP5Token {
-            completion(.success(tokenInfo))
-            return
-        }
-        let scriptBuilder = ScriptBuilder()
-        scriptBuilder.pushContractInvoke(scriptHash: scriptHash, operation: "name")
-        scriptBuilder.pushContractInvoke(scriptHash: scriptHash, operation: "symbol")
-        scriptBuilder.pushContractInvoke(scriptHash: scriptHash, operation: "decimals")
-        scriptBuilder.pushContractInvoke(scriptHash: scriptHash, operation: "totalSupply")
-        invokeContract(with: scriptBuilder.rawHexString) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let contractResult):
-                guard let token = NEP5Token(from: contractResult.stack) else {
-                    completion(.failure(.invalidData))
-                    return
-                }
-                self.tokenInfoCache.setObject(token as AnyObject, forKey: cacheKey)
-                completion(.success(token))
             }
         }
     }
@@ -624,20 +461,6 @@ public class NeoClient {
     
     public func getTokenBalance(_ scriptHash: String, address: String, completion: @escaping(NeoClientResult<Double>) -> ()) {
         let scriptBuilder = ScriptBuilder()
-        let cacheKey: NSString = scriptHash as NSString
-        guard let tokenInfo = tokenInfoCache.object(forKey: cacheKey) as? NEP5Token else {
-            //Token info not in cache then fetch it.
-            self.getTokenInfo(with: scriptHash, completion: { result in
-                switch result {
-                case .failure(let error):
-                    completion(.failure(error))
-                case .success:
-                    self.getTokenBalance(scriptHash, address: address, completion: completion)
-                    return
-                }
-            })
-            return
-        }
         
         scriptBuilder.pushContractInvoke(scriptHash: scriptHash, operation: "balanceOf", args: [address.hashFromAddress()])
         self.invokeContract(with: scriptBuilder.rawHexString) { contractResult in
@@ -648,14 +471,14 @@ public class NeoClient {
                 #if DEBUG
                 print(response)
                 #endif
-                let balanceData = response.stack[0].hexDataValue ?? ""
+                let balanceData = response.stack[1].hexDataValue ?? ""
                 if balanceData == "" {
                     completion(.success(0))
                     return
                 }
                 
                 let balance = Double(balanceData.littleEndianHexToUInt)
-                let divider = pow(Double(10), Double(tokenInfo.decimals))
+                let divider = pow(Double(10), Double(2))
                 let amount = balance / divider
                 completion(.success(amount))
             }
@@ -677,74 +500,6 @@ public class NeoClient {
             case .success(let response):
                 print(response)
                 completion(.success(0.0))
-            }
-        }
-    }
-    
-    public func getTokenBalanceUInt(_ scriptHash: String, address: String, completion: @escaping(NeoClientResult<UInt>) -> ()) {
-        let scriptBuilder = ScriptBuilder()
-        
-        scriptBuilder.pushContractInvoke(scriptHash: scriptHash, operation: "balanceOf", args: [address.hashFromAddress()])
-        self.invokeContract(with: scriptBuilder.rawHexString) { contractResult in
-            switch contractResult {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                #if DEBUG
-                print(response)
-                #endif
-                let balanceData = response.stack[0].hexDataValue ?? ""
-                if balanceData == "" {
-                    completion(.success(0))
-                    return
-                }
-                let balance = balanceData.littleEndianHexToUInt
-                completion(.success(balance))
-            }
-        }
-    }
-    
-    public func getAssetState(for asset: String, completion: @escaping(NeoClientResult<AssetState>) -> ()) {
-        sendRequest(.getAssetState, params: [asset]) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                let decoder = JSONDecoder()
-                guard let data = try? JSONSerialization.data(withJSONObject: (response["result"] as! JSONDictionary), options: .prettyPrinted),
-                    let assetState = try? decoder.decode(AssetState.self, from: data) else {
-                        completion(.failure(.invalidData))
-                        return
-                }
-                
-                let result = NeoClientResult.success(assetState)
-                completion(result)
-            }
-        }
-    }
-    
-    
-    public func getTokenSaleStatus(for address: String, scriptHash: String, completion: @escaping(NeoClientResult<Bool>) -> ()) {
-        let scriptBuilder = ScriptBuilder()
-        scriptBuilder.pushContractInvoke(scriptHash: scriptHash, operation: "kycStatus", args: [address.hashFromAddress()])
-        self.invokeContract(with: scriptBuilder.rawHexString) { contractResult in
-            switch contractResult {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                #if DEBUG
-                print(response)
-                #endif
-                let whitelisted = response.stack[0].hexDataValue
-                if whitelisted == "" {
-                    completion(.success(false))
-                    return
-                }
-                if whitelisted == "01" {
-                    completion(.success(true))
-                    return
-                }
-                completion(.success(false))
             }
         }
     }

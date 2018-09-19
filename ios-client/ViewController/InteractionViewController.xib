@@ -27,7 +27,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view contentMode="scaleToFill" misplaced="YES" id="CZ4-y4-OBD">
-                    <rect key="frame" x="213" y="189" width="240" height="86"/>
+                    <rect key="frame" x="213" y="189" width="240" height="129"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IBW-gI-kEp">
@@ -68,6 +68,26 @@
                             </state>
                             <connections>
                                 <action selector="totalSupplyTap:" destination="-1" eventType="touchUpInside" id="cyT-pO-BVG"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M3Q-Pu-4Zc">
+                            <rect key="frame" x="0.0" y="86" width="120" height="43"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="balanceOf">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="balanceOfTap:" destination="-1" eventType="touchUpInside" id="BMM-GG-4KU"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="D36-gA-iau">
+                            <rect key="frame" x="120" y="86" width="120" height="43"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="feedReef">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="feedReefTap:" destination="-1" eventType="touchUpInside" id="QIc-6h-b6o"/>
                             </connections>
                         </button>
                     </subviews>
