@@ -33,7 +33,11 @@ namespace FishEffect.Helpers
 		    newFish = newFish.Concat(quantityOfFeeds); // how many times ate
 
 		    BigInteger remainingSize = newFish.Length - GetSize();
-		    newFish = newFish.Concat(new byte[(int) remainingSize]);
+            for(int i = 0; i < remainingSize; i++)
+            {
+                newFish = newFish.Concat(new byte[] { 0 });
+            }
+		    
 
 		    return newFish;
 	    }
@@ -66,10 +70,12 @@ namespace FishEffect.Helpers
 		    newFish = newFish.Concat(quantityOfFeeds); // how many times ate
 
 		    BigInteger remainingSize = newFish.Length - GetSize();
-		    byte[] emptyBytes = AppGlobals.EmptyBytes.Range(0, (int)remainingSize);
-		    newFish = newFish.Concat(emptyBytes);
+            for (int i = 0; i < remainingSize; i++)
+            {
+                newFish = newFish.Concat(new byte[] { 0 });
+            }
 
-		    return newFish;
+            return newFish;
 	    }
 	    
 	    #endregion
@@ -169,8 +175,8 @@ namespace FishEffect.Helpers
 
 	    public static BigInteger GetSize()
 	    {
-		    return GetSizeOfDna() + SizeOfBirthBlockHeight() + SizeOfQuantityOfFeeds() + SizeOfFedWithFishBlockHeight() +
-		           SizeOfPredatorDna();
+		    return GetSizeOfDna() + SizeOfBirthBlockHeight() + SizeOfQuantityOfFeeds() + SizeOfFedWithFishBlockHeight();
+		    // + SizeOfPredatorDna();
 	    }
 	    
 	    #endregion

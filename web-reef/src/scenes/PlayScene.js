@@ -46,6 +46,7 @@ export default class PlayScene extends Scene {
 
   async loadFishes() {
     const resp = await NeoFetcher.getReefFishesAlive(this.reefAddress);
+    console.log(resp);
 
     if (resp) {
       const byteArr = this.parseHexString(resp);
@@ -53,16 +54,25 @@ export default class PlayScene extends Scene {
       const fishesBytes = [];
 
       for (var i = 0; i < byteArr.length; i += chunk) {
-        byteArr.slice(i, i + chunk);
-        fishesBytes.push(byteArr);
+        const slice = byteArr.slice(i, i + chunk);
+        fishesBytes.push(slice);
       }
 
       if (this.previousFishesBytes) {
-        const newFishesBytes = fishesBytes
-          .filter(item => !this.arrayContainsSubArray(this.previousFishesBytes, item));
 
-        const deadFishesBytes = this.previousFishesBytes
-          .filter(item => !this.arrayContainsSubArray(fishesBytes, item));
+        const newFishesBytes = fishesBytes.filter(f => {
+          const fDna = f.slice(FishByteArray.getIndexOfDna(), FishByteArray.getIndexOfDna() + FishByteArray.getSizeOfDna());
+          const prevDnas = this.previousFishesBytes.map(fp => fp.slice(FishByteArray.getIndexOfDna(), FishByteArray.getIndexOfDna() + FishByteArray.getSizeOfDna()))
+
+          return !this.arrayContainsSubArray(prevDnas, fDna);
+        });
+
+        const deadFishesBytes = this.previousFishesBytes.filter(fp => {
+          const prevDna = fp.slice(FishByteArray.getIndexOfDna(), FishByteArray.getIndexOfDna() + FishByteArray.getSizeOfDna());
+          const fDnas = fishesBytes.map(f => f.slice(FishByteArray.getIndexOfDna(), FishByteArray.getIndexOfDna() + FishByteArray.getSizeOfDna()))
+
+          return !this.arrayContainsSubArray(fDnas, prevDna);
+        });
 
         if (newFishesBytes.length > 0) {
           toastr["success"]("A new Fish!");
@@ -102,12 +112,12 @@ export default class PlayScene extends Scene {
     if (a == null || b == null) return false;
     if (a.length != b.length) return false;
 
-    // If you don't care about the order of the elements inside
-    // the array, you should sort both arrays here.
-
     for (var i = 0; i < a.length; ++i) {
-      if (a[i] !== b[i]) return false;
+      if (a[i] !== b[i]) {
+        return false;
+      }
     }
+
     return true;
   }
 

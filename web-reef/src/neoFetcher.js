@@ -28,9 +28,9 @@ export default {
     return subj && subj.length ? Neon.u.reverseHex(subj) : '';
   },
 
-  // toByteArray(subj) {
-  //   return subj && subj.length ? Neon.u.toByteArray(subj) : '';
-  // },
+  addressToScriptHash(subj) {
+    return subj && subj.length ? this.reverseHex(wallet.getScriptHashFromAddress(subj)) : '';
+  },
 
   hex2number(hex) {
     return hex && hex.length ? parseInt(hex, 16) : '';
@@ -93,6 +93,6 @@ export default {
   },
 
   async getReefFishesAlive(reefAddress) {
-    return await this.testInvoke('getReefFishesAlive', this.str2hexstring(reefAddress));
+    return await this.testInvoke('getReefFishesAlive', this.addressToScriptHash(reefAddress));
   },
 }

@@ -12,6 +12,16 @@ namespace FishEffect
 		{
 			return AppGlobals.PrefixOfReefFishesAlive.Concat(scriptHash);
 		}
+		
+		private static byte[] KeyOfReefFishesDead(byte[] scriptHash)
+		{
+			return AppGlobals.PrefixOfReefFishesDead.Concat(scriptHash);
+		}
+		
+		private static byte[] KeyOfBlockHeightFedReef(byte[] scriptHash)
+		{
+			return AppGlobals.PrefixOfBlockHeightFedReef.Concat(scriptHash);
+		}
 
 		public static byte[] GetReefFishesAlive(byte[] reef)
 		{
@@ -24,11 +34,6 @@ namespace FishEffect
 			byte[] keyOfToReefFishesAlive = KeyOfReefFishesAlive(reef);
 			GenericDao.Put(keyOfToReefFishesAlive, fish);
 		}
-		
-		private static byte[] KeyOfReefFishesDead(byte[] scriptHash)
-		{
-			return AppGlobals.PrefixOfReefFishesDead.Concat(scriptHash);
-		}
 
 		public static byte[] GetReefFishesDead(byte[] reef)
 		{
@@ -40,6 +45,18 @@ namespace FishEffect
 		{
 			byte[] keyOfToReefFishesDead = KeyOfReefFishesDead(reef);
 			GenericDao.Put(keyOfToReefFishesDead, fish);
+		}
+
+		public static byte[] GetBlockHeightFedReef(byte[] reef)
+		{
+			byte[] keyOfBlockHeightFedReef = KeyOfBlockHeightFedReef(reef);
+			return GenericDao.Get(keyOfBlockHeightFedReef);
+		}
+
+		public static void UpdateBlockHeightFedReef(byte[] reef, byte[] fish)
+		{
+			byte[] keyOfBlockHeightFedReef = KeyOfBlockHeightFedReef(reef);
+			GenericDao.Put(keyOfBlockHeightFedReef, fish);
 		}
 	}
 }
