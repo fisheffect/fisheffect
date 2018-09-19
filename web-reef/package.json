@@ -8,9 +8,10 @@
     "eject": "phaser-scripts eject"
   },
   "dependencies": {
+    "@cityofzion/neon-js": "^4.0.2",
     "axios": "^0.18.0",
     "phaser": "^3.12.0",
-    "@cityofzion/neon-js": "3.3.2"
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "@phaser-cli/scripts": "^1.0.10"

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Fish Effect</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <style>
       /* ELEMENTS */
       * {
@@ -14,6 +15,7 @@
       body {
         background: black;
         margin: 0;
+        overflow: hidden;
       }
       input {
         height: 30px;
@@ -108,6 +110,17 @@
         <input id="passphrase" class="mb-10" type="password" placeholder="Passphrase" required autofocus/>
         <input id="encryptedKey" class="mb-10" type="password" placeholder="EncryptedKey" required>
         <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <div id="askAddressWindow" class="absolute top-0 scrim verti w-window h-window items-center" style="visibility: hidden">
+      <div class="horiz items-center">
+        <h1 class="whitetext mr-10 p-10">Please, enter the reef address you want to see</h1>
+        <img id="closeAskAddress" src="src/assets/close.png" style="width: 24px; height: 24px">
+      </div>
+      <form id="askAddress" class="verti w-300 p-30 card">
+        <input id="addressToGo" class="mb-10" type="text" placeholder="Address" required>
+        <button type="submit">Go</button>
       </form>
     </div>
   </body>
