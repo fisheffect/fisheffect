@@ -8,10 +8,12 @@ namespace FishEffect.Helpers
 {
     public class FishManager
     {
+	    #region BUILDERS
+	    
 	    public static byte[] BuildImmigrant(byte[] reef, BigInteger consensusData, BigInteger randomStep)
 	    {
 		    byte[] newFish = new byte[0];
-		    BigInteger endOfDnaInfluence = GetIndexOfDna() + _sizeOfRandomDnaInfluence;
+		    BigInteger endOfDnaInfluence = GetIndexOfDna() + SizeOfRandomDnaInfluence();
 			
 		    // First 4 properties are random: Vegan-Carnivorous, Size, BellyType, BackType
 		    for (int i = (int) GetIndexOfDna(); i < endOfDnaInfluence; i++)
@@ -25,7 +27,7 @@ namespace FishEffect.Helpers
 
 		    BigInteger blockHeight = Blockchain.GetHeight();
 		
-		    newFish = newFish.Concat(reef.Range((int) endOfDnaInfluence, (int) _sizeOfReefDnaInfluence));
+		    newFish = newFish.Concat(reef.Range((int) endOfDnaInfluence, (int) SizeOfReefDnaInfluence()));
 		    newFish = newFish.Concat(blockHeight.AsByteArray()); // 4 bytes
 		    byte[] quantityOfFeeds = new byte[] {0};
 		    newFish = newFish.Concat(quantityOfFeeds); // how many times ate
@@ -70,59 +72,34 @@ namespace FishEffect.Helpers
 		    return newFish;
 	    }
 	    
-	    private static BigInteger GetIndexOfStart()
-	    {
-		    return 0;
-	    }
-
-	    private static BigInteger GetIndexOfRandomDnaInfluence()
-	    {
-		    return GetIndexOfStart();
-	    }
+	    #endregion
 	    
-        private static readonly BigInteger _sizeOfRandomDnaInfluence = 4;
+	    #region META GETTERS AND SETTERS
 
 	    public static byte[] GetRandomDnaInfluence(byte[] fish)
 	    {
-		    return fish.Range((int) GetIndexOfRandomDnaInfluence(), (int) _sizeOfRandomDnaInfluence);
+		    return fish.Range((int) GetIndexOfRandomDnaInfluence(), (int) SizeOfRandomDnaInfluence());
 	    }
 
 	    public static byte[] SetRandomDnaInfluence(byte[] fish, byte[] newInfo)
 	    {
 		    BigInteger start = GetIndexOfStart();
 		    BigInteger middle1 = GetIndexOfRandomDnaInfluence();
-		    BigInteger middle2 = GetIndexOfRandomDnaInfluence() + _sizeOfRandomDnaInfluence;
+		    BigInteger middle2 = GetIndexOfRandomDnaInfluence() + SizeOfRandomDnaInfluence();
 		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
 	    }
 
-	    private static BigInteger GetIndexOfReefDnaInfluence()
-	    {
-		    return GetIndexOfRandomDnaInfluence() + _sizeOfRandomDnaInfluence;
-	    }
-	    
-        private static readonly BigInteger _sizeOfReefDnaInfluence = 16;
-
 	    public static byte[] GetReefDnaInfluence(byte[] fish)
 	    {
-		    return fish.Range((int) GetIndexOfReefDnaInfluence(), (int) _sizeOfReefDnaInfluence);
+		    return fish.Range((int) GetIndexOfReefDnaInfluence(), (int) SizeOfReefDnaInfluence());
 	    }
 
 	    public static byte[] SetReefDnaInfluence(byte[] fish, byte[] newInfo)
 	    {
 		    BigInteger start = GetIndexOfStart();
 		    BigInteger middle1 = GetIndexOfReefDnaInfluence();
-		    BigInteger middle2 = GetIndexOfReefDnaInfluence() + _sizeOfReefDnaInfluence;
+		    BigInteger middle2 = GetIndexOfReefDnaInfluence() + SizeOfReefDnaInfluence();
 		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
-	    }
-
-	    private static BigInteger GetIndexOfDna()
-	    {
-		    return GetIndexOfStart();
-	    }
-
-	    private static BigInteger GetSizeOfDna()
-	    {
-		    return _sizeOfRandomDnaInfluence + _sizeOfReefDnaInfluence;
 	    }
 	    
 	    public static byte[] GetDna(byte[] fish)
@@ -137,93 +114,148 @@ namespace FishEffect.Helpers
 		    BigInteger middle2 = GetIndexOfDna() + GetSizeOfDna();
 		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
 	    }
-
-	    private static BigInteger GetIndexOfBirthBlockHeight()
-	    {
-		    return GetIndexOfDna() + GetSizeOfDna();
-	    }
-	    
-	    private static readonly BigInteger _sizeOfBirthBlockHeight = 4;
 	    
 	    public static byte[] GetBirthBlockHeight(byte[] fish)
 	    {
-		    return fish.Range((int) GetIndexOfBirthBlockHeight(), (int) _sizeOfBirthBlockHeight);
+		    return fish.Range((int) GetIndexOfBirthBlockHeight(), (int) SizeOfBirthBlockHeight());
 	    }
 
 	    public static byte[] SetBirthBlockHeight(byte[] fish, byte[] newInfo)
 	    {
 		    BigInteger start = GetIndexOfStart();
 		    BigInteger middle1 = GetIndexOfBirthBlockHeight();
-		    BigInteger middle2 = GetIndexOfBirthBlockHeight() + _sizeOfBirthBlockHeight;
+		    BigInteger middle2 = GetIndexOfBirthBlockHeight() + SizeOfBirthBlockHeight();
 		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
-	    }
-		
-	    private static readonly BigInteger _sizeOfQuantityOfFeeds = 1;
-
-	    private static BigInteger GetIndexOfQuantityOfFeeds()
-	    {
-		    return GetIndexOfBirthBlockHeight() + _sizeOfBirthBlockHeight;
 	    }
 	    
 	    public static byte[] GetQuantityOfFeeds(byte[] fish)
 	    {
-		    return fish.Range((int) GetIndexOfQuantityOfFeeds(), (int) _sizeOfQuantityOfFeeds);
+		    return fish.Range((int) GetIndexOfQuantityOfFeeds(), (int) SizeOfQuantityOfFeeds());
 	    }
 
 	    public static byte[] SetQuantityOfFeeds(byte[] fish, byte[] newInfo)
 	    {
 		    BigInteger start = GetIndexOfStart();
 		    BigInteger middle1 = GetIndexOfQuantityOfFeeds();
-		    BigInteger middle2 = GetIndexOfQuantityOfFeeds() + _sizeOfQuantityOfFeeds;
+		    BigInteger middle2 = GetIndexOfQuantityOfFeeds() + SizeOfQuantityOfFeeds();
 		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
 	    }
 
-	    private static BigInteger GetIndexOfFedWithFishBlockHeight()
-	    {
-		    return GetIndexOfQuantityOfFeeds() + _sizeOfQuantityOfFeeds;
-	    }
-		
-	    private static readonly BigInteger _sizeOfFedWithFishBlockHeight = 4;
-	    
 	    public static byte[] GetFedWithFishBlockHeight(byte[] fish)
 	    {
-		    return fish.Range((int) GetIndexOfFedWithFishBlockHeight(), (int) _sizeOfFedWithFishBlockHeight);
+		    return fish.Range((int) GetIndexOfFedWithFishBlockHeight(), (int) SizeOfFedWithFishBlockHeight());
 	    }
 
 	    public static byte[] SetFedWithFishBlockHeight(byte[] fish, byte[] newInfo)
 	    {
 		    BigInteger start = GetIndexOfStart();
 		    BigInteger middle1 = GetIndexOfFedWithFishBlockHeight();
-		    BigInteger middle2 = GetIndexOfFedWithFishBlockHeight() + _sizeOfFedWithFishBlockHeight;
+		    BigInteger middle2 = GetIndexOfFedWithFishBlockHeight() + SizeOfFedWithFishBlockHeight();
 		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
 	    }
 
-	    private static BigInteger GetIndexOfPredatorDna()
-	    {
-		    return GetIndexOfFedWithFishBlockHeight() + _sizeOfFedWithFishBlockHeight;
-	    }
-		
-	    private static readonly BigInteger _sizeOfPredatorDna = 0 + GetSizeOfDna();
-	    
 	    public static byte[] GetPredatorDna(byte[] fish)
 	    {
-		    return fish.Range((int) GetIndexOfPredatorDna(), (int) _sizeOfPredatorDna);
+		    return fish.Range((int) GetIndexOfPredatorDna(), (int) SizeOfPredatorDna());
 	    }
 
 	    public static byte[] SetPredatorDna(byte[] fish, byte[] newInfo)
 	    {
 		    BigInteger start = GetIndexOfStart();
 		    BigInteger middle1 = GetIndexOfPredatorDna();
-		    BigInteger middle2 = GetIndexOfPredatorDna() + _sizeOfPredatorDna;
+		    BigInteger middle2 = GetIndexOfPredatorDna() + SizeOfPredatorDna();
 		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
 	    }
 
 	    public static BigInteger GetSize()
 	    {
-		    return GetSizeOfDna() + _sizeOfBirthBlockHeight + _sizeOfQuantityOfFeeds + _sizeOfFedWithFishBlockHeight +
-		           _sizeOfPredatorDna;
+		    return GetSizeOfDna() + SizeOfBirthBlockHeight() + SizeOfQuantityOfFeeds() + SizeOfFedWithFishBlockHeight() +
+		           SizeOfPredatorDna();
 	    }
-			
+	    
+	    #endregion
+
+	    #region META INDEXES AND SIZES
+	    
+	    private static BigInteger GetIndexOfStart()
+	    {
+		    return 0;
+	    }
+
+	    private static BigInteger GetIndexOfRandomDnaInfluence()
+	    {
+		    return GetIndexOfStart();
+	    }
+
+	    private static BigInteger SizeOfRandomDnaInfluence()
+	    {
+		    return 4;
+	    }
+
+	    private static BigInteger GetIndexOfReefDnaInfluence()
+	    {
+		    return GetIndexOfRandomDnaInfluence() + SizeOfRandomDnaInfluence();
+	    }
+
+	    private static BigInteger SizeOfReefDnaInfluence()
+	    {
+		    return 16;
+	    }
+
+	    private static BigInteger GetIndexOfDna()
+	    {
+		    return GetIndexOfStart();
+	    }
+
+	    private static BigInteger GetSizeOfDna()
+	    {
+		    return SizeOfRandomDnaInfluence() + SizeOfReefDnaInfluence();
+	    }
+
+	    private static BigInteger GetIndexOfBirthBlockHeight()
+	    {
+		    return GetIndexOfDna() + GetSizeOfDna();
+	    }
+
+	    private static BigInteger SizeOfBirthBlockHeight()
+	    {
+		    return 4;
+	    }
+
+	    private static BigInteger SizeOfQuantityOfFeeds()
+	    {
+		    return 1;
+	    }
+
+	    private static BigInteger GetIndexOfQuantityOfFeeds()
+	    {
+		    return GetIndexOfBirthBlockHeight() + SizeOfBirthBlockHeight();
+	    }
+
+	    private static BigInteger GetIndexOfFedWithFishBlockHeight()
+	    {
+		    return GetIndexOfQuantityOfFeeds() + SizeOfQuantityOfFeeds();
+	    }
+
+	    private static BigInteger SizeOfFedWithFishBlockHeight()
+	    {
+		    return 4;
+	    }
+
+	    private static BigInteger GetIndexOfPredatorDna()
+	    {
+		    return GetIndexOfFedWithFishBlockHeight() + SizeOfFedWithFishBlockHeight();
+	    }
+
+	    private static BigInteger SizeOfPredatorDna()
+	    {
+		    return GetSizeOfDna();
+	    }
+	    
+	    #endregion
+
+	    #region DNA PROPS GETTERS AND SETTERS
+	    
 	    private static readonly BigInteger _indexOfPropCarnivorous = 0;
 	    private static readonly BigInteger _indexOfPropSize = 1;
 	    private static readonly BigInteger _indexOfPropBelly = 2;
@@ -336,6 +368,8 @@ namespace FishEffect.Helpers
 		    BigInteger middle2 = _indexOfPropSideFin + 1;
 		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
 	    }
+
+	    #endregion
 	    
     }
 }

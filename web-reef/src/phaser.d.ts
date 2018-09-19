@@ -41497,7 +41497,7 @@ declare namespace Phaser {
                 gravity: number;
 
                 /**
-                 * Spatial hash cell dimensions
+                 * Spatial bytes cell dimensions
                  */
                 cellSize: integer;
 
@@ -41648,7 +41648,7 @@ declare namespace Phaser {
                 update(time: number, delta: number): void;
 
                 /**
-                 * Check the body against the spatial hash.
+                 * Check the body against the spatial bytes.
                  * @param body [description]
                  * @param hash [description]
                  * @param size [description]
