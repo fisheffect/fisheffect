@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		FA58ED8C214C578A00FF9808 /* NeoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC94E8F214C4E5A00BC932F /* NeoSwift.framework */; };
 		FA58ED8D214C578A00FF9808 /* NeoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAC94E8F214C4E5A00BC932F /* NeoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA7E664A2152D54800B6DD25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E66482152D54800B6DD25 /* LoginViewController.swift */; };
+		FA7E664B2152D54800B6DD25 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7E66492152D54800B6DD25 /* LoginViewController.xib */; };
 		FAC94E77214C4DB700BC932F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC94E76214C4DB700BC932F /* AppDelegate.swift */; };
 		FAC94E7E214C4DBA00BC932F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC94E7D214C4DBA00BC932F /* Assets.xcassets */; };
 		FAC94E81214C4DBA00BC932F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC94E7F214C4DBA00BC932F /* LaunchScreen.storyboard */; };
@@ -48,6 +50,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA7E66482152D54800B6DD25 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FA7E66492152D54800B6DD25 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		FAC94E73214C4DB700BC932F /* FishEffect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishEffect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC94E76214C4DB700BC932F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAC94E7D214C4DBA00BC932F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 			children = (
 				FAC94E92214C4E9600BC932F /* InteractionViewController.swift */,
 				FAC94E93214C4E9600BC932F /* InteractionViewController.xib */,
+				FA7E66482152D54800B6DD25 /* LoginViewController.swift */,
+				FA7E66492152D54800B6DD25 /* LoginViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -200,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7E664B2152D54800B6DD25 /* LoginViewController.xib in Resources */,
 				FAC94E81214C4DBA00BC932F /* LaunchScreen.storyboard in Resources */,
 				FAC94E95214C4E9600BC932F /* InteractionViewController.xib in Resources */,
 				FAC94E7E214C4DBA00BC932F /* Assets.xcassets in Resources */,
@@ -213,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7E664A2152D54800B6DD25 /* LoginViewController.swift in Sources */,
 				FAC94E77214C4DB700BC932F /* AppDelegate.swift in Sources */,
 				FAC94E94214C4E9600BC932F /* InteractionViewController.swift in Sources */,
 			);

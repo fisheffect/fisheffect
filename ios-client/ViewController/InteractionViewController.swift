@@ -12,10 +12,14 @@ import NeoSwift
 class InteractionViewController: UIViewController {
 
     let neoClient = NeoClient(network: .main, seedURL: "http://18.191.236.185:30333")
-    let smartcontract_hash = "1ee5f347f564829378e642bc408f310953ffdc95"
+    let smartcontract_hash = "13c05d1ff69d3ad1cbdb89f729da9584893303a9"
+    var account: Account?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationItem.setHidesBackButton(true, animated: false)
+//        self.account = Account(wif: "KwxrTNGVC62dZ76PeCMnSPgxJdWVNktdvP9scjdvhwLPB9Nr6yDB")
+        self.account?.neoClient = self.neoClient
     }
 
     @IBAction func symbolTap(_ sender: Any) {
@@ -64,6 +68,32 @@ class InteractionViewController: UIViewController {
                 self.showGenericError(error.localizedDescription)
             case .success(let totalSupply):
                 let alert = UIAlertController(title: nil, message: totalSupply, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in }))
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
+    }
+    
+    @IBAction func balanceOfTap(_ sender: Any) {
+        self.neoClient.getTokenBalance(self.smartcontract_hash, address: (self.account?.address)!) { (result) in
+            switch result {
+            case .failure(let error):
+                self.showGenericError(error.localizedDescription)
+            case .success(let balance):
+                let alert = UIAlertController(title: nil, message: String(format: "%f", balance), preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in }))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func feedReefTap(_ sender: Any) {
+        self.account?.feedReef(tokenContractHash: self.smartcontract_hash, completion: { (result, error) in
+            if let errorLet = error {
+                self.showGenericError(errorLet.localizedDescription)
+            }
+            else {
+                let alert = UIAlertController(title: nil, message: String(result!), preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in }))
                 self.present(alert, animated: true, completion: nil)
             }

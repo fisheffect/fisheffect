@@ -302,60 +302,6 @@ public class Account {
      * https://github.com/CityOfZion/neon-wallet-db
      */
     
-    func generateClaimInputData(claims: Claimable) -> Data {
-        var payload: [UInt8] = [0x02] // Claim Transaction Type
-        payload = payload + [0x00]    // Version
-        //let claimsCount = UInt8(claims.claims.count)
-        let claimsCount = UInt8(claims.claims.count)
-        payload = payload + [claimsCount]
-        
-        for claim in claims.claims {
-            payload = payload + claim.txid.dataWithHexString().bytes.reversed()
-            payload = payload + toByteArray(claim.index)
-        }
-
-        let amountDecimal = claims.gas * pow(10, 8)
-        let amountInt = NSDecimalNumber(decimal: amountDecimal).intValue
-        payload = payload + [0x00] // Attributes
-        payload = payload + [0x00] // Inputs
-        payload = payload + [0x01] // Output Count
-        payload = payload + AssetId.gasAssetId.rawValue.dataWithHexString().bytes.reversed()
-        payload = payload + toByteArray(amountInt)
-        payload = payload + hashedSignature.bytes
-        #if DEBUG
-        print(payload.fullHexString)
-        #endif
-        return Data(bytes: payload)
-    }
-    
-    func generateClaimTransactionPayload(claims: Claimable) -> Data {
-        var error: NSError?
-        let rawClaim = generateClaimInputData(claims: claims)
-        let signatureData = NeoutilsSign(rawClaim, privateKey.fullHexString, &error)
-        let finalPayload = concatenatePayloadData(txData: rawClaim, signatureData: signatureData!)
-        return finalPayload
-    }
-    
-    public func claimGas(completion: @escaping(Bool?, Error?) -> Void) {
-        neoClient.getClaims(address: self.address) { result in
-            switch result {
-            case .failure(let error):
-                completion(nil, error)
-            case .success(let claims):
-                let claimData = self.generateClaimTransactionPayload(claims: claims)
-                print(claimData.fullHexString)
-                self.neoClient.sendRawTransaction(with: claimData) { (result) in
-                    switch result {
-                    case .failure(let error):
-                        completion(nil, error)
-                    case .success(let response):
-                        completion(response, nil)
-                    }
-                }
-            }
-        }
-    }
-    
     private func generateInvokeTransactionPayload(assets: Assets?, script: String, contractAddress: String, attributes: [TransactionAttritbute]?) -> Data {
         var error: NSError?
         
@@ -383,10 +329,19 @@ public class Account {
         return [UInt8(script.count)] + script
     }
     
+    private func buildFeedReefScript(scriptHash: String, fromAddress: String) -> [UInt8] {
+        let fromAddressHash = fromAddress.hashFromAddress()
+        let scriptBuilder = ScriptBuilder()
+        scriptBuilder.pushContractInvoke(scriptHash: scriptHash, operation: "feedReef",
+                                         args: [fromAddressHash])
+        let script = scriptBuilder.rawBytes
+        return [UInt8(script.count)] + script
+    }
+    
     public func sendNep5Token(tokenContractHash: String, amount: Double, toAddress: String, attributes: [TransactionAttritbute]? = nil, completion: @escaping(Bool?, Error?) -> Void) {
         var customAttributes: [TransactionAttritbute] = []
         customAttributes.append(TransactionAttritbute(script: self.address.hashFromAddress()))
-        let remark = String(format: "SimpliPayX%@", Date().timeIntervalSince1970.description)
+        let remark = String(format: "FishEffect%@", Date().timeIntervalSince1970.description)
         customAttributes.append(TransactionAttritbute(remark: remark))
         customAttributes.append(TransactionAttritbute(descriptionHex: tokenContractHash))
         
@@ -407,7 +362,31 @@ public class Account {
         }
     }
     
-    public func invokeContractFunction(assets: Assets, contractHash: String, method: String, args: [Any], completion: @escaping(Bool?, Error?) -> Void) {
+    public func feedReef(tokenContractHash: String, attributes: [TransactionAttritbute]? = nil, completion: @escaping(Bool?, Error?) -> Void) {
+        var customAttributes: [TransactionAttritbute] = []
+        customAttributes.append(TransactionAttritbute(script: self.address.hashFromAddress()))
+        let remark = String(format: "FishEffect%@", Date().timeIntervalSince1970.description)
+        customAttributes.append(TransactionAttritbute(remark: remark))
+        customAttributes.append(TransactionAttritbute(descriptionHex: tokenContractHash))
+        
+        //send nep5 token without using utxo
+        let scriptBytes = self.buildFeedReefScript(scriptHash: tokenContractHash,
+                                                       fromAddress: self.address)
+        var payload = self.generateInvokeTransactionPayload(assets: nil, script: scriptBytes.fullHexString,
+                                                            contractAddress: tokenContractHash, attributes: customAttributes )
+        payload += tokenContractHash.dataWithHexString().bytes
+        print(payload.fullHexString)
+        neoClient.sendRawTransaction(with: payload) { (result) in
+            switch result {
+            case .failure(let error):
+                completion(nil, error)
+            case .success(let response):
+                completion(response, nil)
+            }
+        }
+    }
+    
+    public func invokeContractFunction(assets: Assets?, contractHash: String, method: String, args: [Any], completion: @escaping(Bool?, Error?) -> Void) {
         
         let scriptBuilder = ScriptBuilder()
         scriptBuilder.pushContractInvoke(scriptHash: contractHash, operation: method,
@@ -430,34 +409,5 @@ public class Account {
     
     public func exportEncryptedKey(with passphrase: String) -> String {
         return NEP2.encryptKey(self.privateKey.bytes, passphrase: passphrase, address: self.address)
-    }
-    
-    
-    public func allowToParticipateInTokenSale(scriptHash: String, completion: @escaping(NeoClientResult<Bool>) -> ()) {
-        self.neoClient.getTokenSaleStatus(for: self.address, scriptHash: scriptHash) { result in
-            completion(result)
-        }
-    }
-    
-    public func participateTokenSales(scriptHash: String, assetID: String, amount: Float64, remark: String, networkFee: Float64,  completion: @escaping(Bool?, String, Error?) -> Void){
-        var network = "main"
-        if self.neoClient.network == .test {
-            network = "test"
-        }
-        var error: NSError?
-        
-        let payload = NeoutilsMintTokensRawTransactionMobile(network, scriptHash, self.wif, assetID, amount, remark, networkFee, &error)
-        if payload == nil {
-            completion(false,"", error)
-            return
-        }
-        self.neoClient.sendRawTransaction(with: payload!.data()) { (result) in
-            switch result {
-            case .failure(let error):
-                completion(nil, "", error)
-            case .success(let response):
-                completion(response, payload!.txid(), nil)
-            }
-        }
     }
 }
