@@ -9,8 +9,8 @@ namespace FishEffect.Model
 {
 	class TransactionAttachments
 	{
-		public static BigInteger NeoSent { get; set; }
-		public static BigInteger GasSent { get; set; }
+		public static readonly BigInteger NeoSent = 0;
+		public static readonly BigInteger GasSent = 0;
 		public static byte[] ReceiverScriptHash { get; set; }
 		public static byte[] SenderScriptHash { get; set; }
 	}
