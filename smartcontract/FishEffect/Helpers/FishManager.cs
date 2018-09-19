@@ -20,9 +20,8 @@ namespace FishEffect.Helpers
 		    {
 			    BigInteger bigStepPlusI = randomStep + i;
 			    BigInteger randomNumber = BlockchainHelper.Random(consensusData, bigStepPlusI);
-			    byte randomByteValue = (byte) randomNumber;
-			    byte[] randomByteArray = new byte[] { randomByteValue };
-			    newFish = newFish.Concat(randomByteArray);
+			    byte[] randomByteValue = randomNumber.AsByteArray();
+			    newFish = newFish.Concat(randomByteValue);
 		    }
 
 		    BigInteger blockHeight = Blockchain.GetHeight();
@@ -32,12 +31,11 @@ namespace FishEffect.Helpers
 		    byte[] quantityOfFeeds = new byte[] {0};
 		    newFish = newFish.Concat(quantityOfFeeds); // how many times ate
 
-		    BigInteger remainingSize = newFish.Length - GetSize();
+		    BigInteger remainingSize = GetSize() - newFish.Length;
             for(int i = 0; i < remainingSize; i++)
             {
                 newFish = newFish.Concat(new byte[] { 0 });
             }
-		    
 
 		    return newFish;
 	    }
@@ -69,7 +67,7 @@ namespace FishEffect.Helpers
 		    byte[] quantityOfFeeds = new byte[] {0};
 		    newFish = newFish.Concat(quantityOfFeeds); // how many times ate
 
-		    BigInteger remainingSize = newFish.Length - GetSize();
+		    BigInteger remainingSize = GetSize() - newFish.Length;
             for (int i = 0; i < remainingSize; i++)
             {
                 newFish = newFish.Concat(new byte[] { 0 });
@@ -160,23 +158,9 @@ namespace FishEffect.Helpers
 		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
 	    }
 
-	    public static byte[] GetPredatorDna(byte[] fish)
-	    {
-		    return fish.Range((int) GetIndexOfPredatorDna(), (int) SizeOfPredatorDna());
-	    }
-
-	    public static byte[] SetPredatorDna(byte[] fish, byte[] newInfo)
-	    {
-		    BigInteger start = GetIndexOfStart();
-		    BigInteger middle1 = GetIndexOfPredatorDna();
-		    BigInteger middle2 = GetIndexOfPredatorDna() + SizeOfPredatorDna();
-		    return ByteArrHelper.InTheMiddle(fish, newInfo, start, middle1, middle2);
-	    }
-
 	    public static BigInteger GetSize()
 	    {
 		    return GetSizeOfDna() + SizeOfBirthBlockHeight() + SizeOfQuantityOfFeeds() + SizeOfFedWithFishBlockHeight();
-		    // + SizeOfPredatorDna();
 	    }
 	    
 	    #endregion
@@ -246,16 +230,6 @@ namespace FishEffect.Helpers
 	    private static BigInteger SizeOfFedWithFishBlockHeight()
 	    {
 		    return 4;
-	    }
-
-	    private static BigInteger GetIndexOfPredatorDna()
-	    {
-		    return GetIndexOfFedWithFishBlockHeight() + SizeOfFedWithFishBlockHeight();
-	    }
-
-	    private static BigInteger SizeOfPredatorDna()
-	    {
-		    return GetSizeOfDna();
 	    }
 	    
 	    #endregion

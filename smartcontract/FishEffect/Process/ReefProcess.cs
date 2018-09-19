@@ -199,18 +199,19 @@ namespace FishEffect
 					newBaby = FishManager.BuildFromParents(consensusData, randomStep, father, mother);
 					randomStep = randomStep + father.Length; // tried random that many times
 					
-					Runtime.Log("* Its a Bo... Fish!");
+					Runtime.Log("* Its a ... Fish!");
 
 					fishesAlive = ListManager.Add(fishesAlive, newBaby);
 					
 					fishesAliveLength = fishesAliveLength + 1;
+					BigInteger newBornIndex = fishesAliveLength - 1;
 					Notifier.NewBornFish(reef, newBaby);
 
 					byte[] fatherFishType = FishManager.GetPropCarnivorous(father);
 					byte[] motherFishType = FishManager.GetPropCarnivorous(mother);
 
 					// if one of the parents are carnivorous and there is another silly fish ready to be a pray 
-					if (fatherFishType[0] == 0 || motherFishType[0] == 0 || fishesAliveLength > 2)
+					if (fatherFishType[0] == 0 || motherFishType[0] == 0 || fishesAliveLength > 3)
 					{
 						Runtime.Log("* There is pray for the predator");
 						BigInteger fathersFedWithFishBlockHeight = FishManager.GetFedWithFishBlockHeight(father).AsBigInteger();
@@ -243,7 +244,7 @@ namespace FishEffect
                                 aRandom = BlockchainHelper.Random(consensusData, randomStep);
                                 randomStep = randomStep + 1;
                                 indexPrey = aRandom % fishesAliveLength;
-							} while (indexPrey == indexMother || indexPrey == indexFather);
+							} while (indexPrey == indexMother || indexPrey == indexFather || indexPrey == newBornIndex);
 
 							// saving the last blockheight when fish was fed with fish
 							predator = FishManager.SetFedWithFishBlockHeight(predator, currentBlockHeight.AsByteArray());
@@ -251,7 +252,6 @@ namespace FishEffect
 
 							// saving the predator dna inside the prey
 							byte[] prey =  ListManager.GetAt(fishesAlive, FishManager.GetSize(), indexPrey);
-//							prey = FishManager.SetPredatorDna(prey, predator);
 							
 							// removing the prey from alive list (after everything, to not lose the right position after removing)
 							fishesAlive = ListManager.RemoveAt(fishesAlive, FishManager.GetSize(), indexPrey);

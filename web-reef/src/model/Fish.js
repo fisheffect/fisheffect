@@ -269,11 +269,6 @@ export default class PlayScene {
     return this.range(this.bytes, FishByteArray.getIndexOfFedWithFishBlockHeight(), FishByteArray.sizeOfFedWithFishBlockHeight());
   }
 
-  getPredatorDna()
-  {
-    return this.range(this.bytes, FishByteArray.getIndexOfPredatorDna(), FishByteArray.sizeOfPredatorDna());
-  }
-
 // endregion
 
 // region DNA PROPS GETTERS AND SETTERS
