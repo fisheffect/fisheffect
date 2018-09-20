@@ -1,4 +1,4 @@
- ---
+---
 id: interopinterface
 title: InteropInterface
 sidebar_label: InteropInterface

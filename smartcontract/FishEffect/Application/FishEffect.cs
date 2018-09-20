@@ -15,11 +15,7 @@ namespace FishEffect
 		#region Enterprise Assets
 		#endregion
 
-		#region Database Prefix
-
-		#endregion
-
-		public static Object Main(string operation, params object[] args)
+		public static Object Main(string operation, Object[] args)
 		{
 			if (Runtime.Trigger == TriggerType.Verification)
 			{
@@ -27,8 +23,65 @@ namespace FishEffect
 			}
 			else if (Runtime.Trigger == TriggerType.Application)
 			{
-				return RunContract(operation, args);
-			}
+                _consensusData = 0;
+                object returnValue = null;
+
+                if (operation == "symbol")
+                {
+                    returnValue = Symbol();
+                }
+                else if (operation == "name")
+                {
+                    returnValue = Name();
+                }
+                else if (operation == "decimals")
+                {
+                    returnValue = Decimals();
+                }
+
+                else if (operation == "totalSupply")
+                {
+                    returnValue = FishCoinProcess.TotalSupply();
+                }
+                else if (operation == "deploy")
+                {
+                    returnValue = FishCoinProcess.Deploy();
+                }
+                else if (operation == "balanceOf")
+                {
+                    returnValue = FishCoinProcess.BalanceOf(args);
+                }
+                else if (operation == "transfer")
+                {
+                    returnValue = FishCoinProcess.Transfer(args);
+                }
+                else if (operation == "transferFish")
+                {
+                    returnValue = ReefProcess.TransferFish(args);
+                }
+                else if (operation == "kycRegister")
+                {
+                    returnValue = FishCoinProcess.KycRegister(args);
+                }
+                else if (operation == "kycStatus")
+                {
+                    returnValue = FishCoinProcess.KycStatus(args);
+                }
+                else if (operation == "feedReef")
+                {
+                    returnValue = ReefProcess.FeedReef(args);
+                }
+                else if (operation == "getReefFishesAlive")
+                {
+                    returnValue = ReefProcess.GetReefFishesAlive(args);
+                }
+                else if (operation == "getReefFishesDead")
+                {
+                    returnValue = ReefProcess.GetReefFishesDead(args);
+                }
+
+                return returnValue;
+            }
 
 			return false;
 			
@@ -36,7 +89,7 @@ namespace FishEffect
 
 
 		#region Contract Triggers
-		public static bool VerifyContract(string signatureString, params object[] args)
+		public static bool VerifyContract(string signatureString, object[] args)
 		{
 			bool returnValue = false;
 			if (AppGlobals.FishEffectScriptHash.Length == 20)
@@ -47,101 +100,9 @@ namespace FishEffect
 			return returnValue;
 		}
 
-		public static object RunContract(string operation, params object[] args)
+		public static object RunContract(string operation, object[] args)
 		{
-			_consensusData = 0;
-			object returnValue = null;
-
-			if (operation == "symbol")
-			{
-				returnValue = Symbol();
-			}
-			else if (operation == "name")
-			{
-				returnValue = Name();
-			}
-			else if (operation == "decimals")
-			{
-				returnValue = Decimals();
-			}
-
-			else if (operation == "totalSupply")
-			{
-				returnValue = FishCoinProcess.TotalSupply();
-			}
-			else if (operation == "deploy")
-			{
-				returnValue = FishCoinProcess.Deploy();
-			}
-			else if (operation == "balanceOf")
-			{
-				returnValue = FishCoinProcess.BalanceOf(args);
-			}
-			else if (operation == "transfer")
-			{
-				returnValue = FishCoinProcess.Transfer(args);
-			}
-			else if (operation == "transferFish")
-			{
-				returnValue = AquariumProcess.TransferFish(args);
-			}
-			else if (operation == "kycRegister")
-			{
-				returnValue = FishCoinProcess.KycRegister(args);
-			}
-			else if (operation == "kycStatus")
-			{
-				returnValue = FishCoinProcess.KycStatus(args);
-			}
-			else if (operation == "feedReef")
-			{
-				returnValue = AquariumProcess.FeedReef(args);
-			}
-			else if (operation == "getFish")
-			{
-				//returnValue = AquariumProcess.GetFish(args);
-			}
-			else if (operation == "random")
-			{
-				return Random();
-			}
-
-			return returnValue;
-		}
-
-
-		public static object Random()
-		{
-			if (_consensusData == 0)
-			{
-				_consensusData = Blockchain.GetHeader(Blockchain.GetHeight()).ConsensusData;
-				//ulong teste = consensusData;
-				//BigInteger novoNumbero = teste;
-				//BigInteger quebrou = novoNumbero.AsByteArray().Length;
-				//_consensusData = novoNumbero;
-			}
-
-			//Runtime.Log("Consensus Data:" + _consensusData);
-			//Runtime.Log("Consensus Data:" + _consensusData);
-			//byte[] randomBytesArray = _consensusData.AsByteArray();
-			//byte[] novoByteArray = new byte[2] {0x10, 0x11};
-
-			//novoByteArray.Concat(randomBytesArray);
-			//BigInteger randomNumberByteSize = 2;
-			//BigInteger randomNumber = new byte[1] { novoByteArray[(uint)_randomStep % (uint)randomNumberByteSize] }.AsBigInteger();
-			//_randomStep = _randomStep + 1;
-
-			//Runtime.Log("Random Number: " + randomNumber);
-			//return randomNumber;
-
-			//if (_randomStep < 10)
-			//{
-			//	Random();
-			//}
-
-			//BigInteger novoNumero = _consensusData + 10;
-
-			return _consensusData;
+            return true;
 		}
 		#endregion
 

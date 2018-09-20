@@ -1,13 +1,32 @@
 import NeoFetcher from "../neoFetcher";
+import FishByteArray from './FishByteArray';
 
 export default class PlayScene {
 
 
-  constructor (scene, hash, fromCenter) {
+  constructor (scene, bytes, fromCenter) {
+    this.scene = scene;
+    this.bytes = bytes;
     this.dead = false;
 
-    this.scene = scene;
+    this.indexOfPropCarnivorous = 0;
+    this.indexOfPropSize = 1;
+    this.indexOfPropBelly = 2;
+    this.indexOfPropBack = 3;
+    this.indexOfPropTopBottomFins = 4;
+    this.indexOfPropHead = 5;
+    this.indexOfPropTail = 6;
+    this.indexOfPropSideFin = 7;
+
     this.repeatIsLeftToRight = Math.random() >= 0.5;
+    this.fishParts = [];
+    this.tweens = [];
+    this.timeouts = [];
+
+    this.initRenderAndAnimation(fromCenter);
+  }
+
+  initRenderAndAnimation(fromCenter) {
     let fishCenterX = this.repeatIsLeftToRight ? -150 : (this.scene.game.canvas.width + 150);
     let fishCenterY = this.randomY();
 
@@ -16,14 +35,9 @@ export default class PlayScene {
       fishCenterY = 350;
     }
 
-    const normalizedDna = this.normalizeDna(hash);
-    this.fishParts = [];
-    this.tweens = [];
-    this.timeouts = [];
-
     this.scene.anims.create({
-      key: `fish${normalizedDna.tail}-tail-anim`,
-      frames: this.scene.anims.generateFrameNumbers(`fish${normalizedDna.tail}-tail`, {
+      key: `fish${this.getPropTail()}-tail-anim`,
+      frames: this.scene.anims.generateFrameNumbers(`fish${this.getPropTail()}-tail`, {
         start: 0,
         end: 1
       }),
@@ -31,23 +45,59 @@ export default class PlayScene {
       frameRate: 10
     });
 
-    const tail = this.scene.add.sprite(fishCenterX, fishCenterY, `fish${normalizedDna.tail}-tail-anim`);
-    tail.anims.play(`fish${normalizedDna.tail}-tail-anim`);
+    const tail = this.scene.add.sprite(fishCenterX, fishCenterY, `fish${this.getPropTail()}-tail-anim`);
+    tail.anims.play(`fish${this.getPropTail()}-tail-anim`);
 
-    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${normalizedDna.topbottomfins}-topbottomfins`));
+    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${this.getPropTopBottomFins()}-topbottomfins`));
     this.fishParts.push(tail);
-    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${normalizedDna.back}-back`));
-    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${normalizedDna.belly}-belly`));
-    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${normalizedDna.head}-${!normalizedDna.carnivorous ? 'head' : 'head_carnivorous'}`));
-    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${normalizedDna.sidefin}-sidefin`));
+    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${this.getPropBack()}-back`));
+    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${this.getPropBelly()}-belly`));
+    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${this.getPropHead()}-${!this.getPropCarnivorous() ? 'head' : 'head_carnivorous'}`));
+    this.fishParts.push(this.scene.add.image(fishCenterX, fishCenterY, `fish${this.getPropSideFin()}-sidefin`));
 
     this.fishParts.forEach(image => {
-      const scale = (0.25 * (normalizedDna.size / 8)) + 0.07;
+      const scale = (0.25 * (this.getPropSize() / 8)) + 0.07;
       image.scaleX = scale;
       image.scaleY = scale;
     });
 
     this.repeatMovement(fromCenter);
+  }
+
+  moveTo(x, y, duration, delay, callback) {
+    this.stop();
+
+    this.timeouts.push(setTimeout(() => {
+      this.fishParts.forEach((image, i) => {
+        image.flipX = image.x < x;
+
+        this.tweens.push(this.scene.tweens.add({
+          targets: image,
+          x,
+          y,
+          duration,
+          onComplete: i != 0 ? null : () => {
+            callback && callback();
+          }
+        }));
+      });
+    }, delay));
+  }
+
+  stop() {
+    this.tweens.forEach(t => t.pause());
+    this.tweens = [];
+
+    this.timeouts.forEach(t => clearTimeout(t));
+    this.timeouts = [];
+  }
+
+  randomY() {
+    return Math.floor(Math.random() * this.scene.game.canvas.height);
+  }
+
+  range(hash, index, count) {
+    return hash.slice(index, index + count);
   }
 
   repeatMovement(withoutDelay) {
@@ -150,26 +200,6 @@ export default class PlayScene {
     });
   }
 
-  moveTo(x, y, duration, delay, callback) {
-    this.stop();
-
-    this.timeouts.push(setTimeout(() => {
-      this.fishParts.forEach((image, i) => {
-        image.flipX = image.x < x;
-
-        this.tweens.push(this.scene.tweens.add({
-          targets: image,
-          x,
-          y,
-          duration,
-          onComplete: i != 0 ? null : () => {
-            callback && callback();
-          }
-        }));
-      });
-    }, delay));
-  }
-
   deadFishFalling(x, y, scale) {
     this.scene.anims.create({
       key: 'fishDeadAnim',
@@ -222,40 +252,68 @@ export default class PlayScene {
     });
   }
 
-  stop() {
-    this.tweens.forEach(t => t.pause());
-    this.tweens = [];
+// region META GETTERS AND SETTERS
 
-    this.timeouts.forEach(t => clearTimeout(t));
-    this.timeouts = [];
+  getBirthBlockHeight()
+  {
+    return this.range(this.bytes, FishByteArray.getIndexOfBirthBlockHeight(), FishByteArray.sizeOfBirthBlockHeight());
   }
 
-  randomY() {
-    return Math.floor(Math.random() * this.scene.game.canvas.height);
+  getQuantityOfFeeds()
+  {
+    return this.range(this.bytes, FishByteArray.getIndexOfQuantityOfFeeds(), FishByteArray.sizeOfQuantityOfFeeds());
   }
 
-  normalizeDna(hash) {
-    if (!hash) {
-      return;
-    }
-    const asBytes = this.parseHexString(hash);
-    return {
-      carnivorous: asBytes[0] % 8 === 7,
-      size: asBytes[1] % 8,
-      belly: asBytes[2] % 8,
-      back: asBytes[3] % 8,
-      topbottomfins: asBytes[4] % 8,
-      head: asBytes[5] % 8,
-      tail: asBytes[6] % 8,
-      sidefin: asBytes[7] % 8
-    };
+  getFedWithFishBlockHeight()
+  {
+    return this.range(this.bytes, FishByteArray.getIndexOfFedWithFishBlockHeight(), FishByteArray.sizeOfFedWithFishBlockHeight());
   }
 
-  parseHexString(hex) {
-    const bytes = [];
-    for (let c = 0; c < hex.length; c += 2) {
-      bytes.push(parseInt(hex.substr(c, 2), 16));
-    }
-    return bytes;
+// endregion
+
+// region DNA PROPS GETTERS AND SETTERS
+
+  getPropCarnivorous()
+  {
+    return this.range(this.bytes, this.indexOfPropCarnivorous, 1)[0] % 8 === 0;
   }
+
+  getPropSize()
+  {
+    return this.range(this.bytes, this.indexOfPropSize, 1) % 8;
+  }
+
+  getPropBelly()
+  {
+    return this.range(this.bytes, this.indexOfPropBelly, 1) % 8;
+  }
+
+  getPropBack()
+  {
+    return this.range(this.bytes, this.indexOfPropBack, 1) % 8;
+  }
+
+  getPropTopBottomFins()
+  {
+    return this.range(this.bytes, this.indexOfPropTopBottomFins, 1) % 8;
+  }
+
+  getPropHead()
+  {
+    return this.range(this.bytes, this.indexOfPropHead, 1) % 8;
+  }
+
+  getPropTail()
+  {
+    return this.range(this.bytes, this.indexOfPropTail, 1) % 8;
+  }
+
+  getPropSideFin()
+  {
+    return this.range(this.bytes, this.indexOfPropSideFin, 1) % 8;
+  }
+
+// endregion
+
+
 }

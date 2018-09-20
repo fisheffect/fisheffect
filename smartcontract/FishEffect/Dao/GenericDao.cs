@@ -8,32 +8,29 @@ namespace FishEffect
 {
 	class GenericDao
 	{
-		
-		public static readonly byte DELIM = (byte)'D';
 
 		public static byte[] Get(byte[] key)
 		{
-			return Storage.Get(Storage.CurrentContext, key);
-		}
+			byte[] res = Storage.Get(Storage.CurrentContext, key);
+			Runtime.Log(" ");
+			Runtime.Log("GET key: ");
+			Runtime.Log(key.AsString());
+			Runtime.Log("GET value: ");
+			Runtime.Log(res.AsString());
+			Runtime.Log("----------");
 
-		public static byte[][] List(byte[] key)
-		{
-			byte[] listTokenized = Get(key);
-			byte[][] list = ListHelper.Separate(listTokenized, DELIM);
-			return list;
+			return res;
 		}
 
 		public static void Put(byte[] key, byte[] value)
 		{
+			Runtime.Log(" ");
+			Runtime.Log("PUT key: ");
+			Runtime.Log(key.AsString());
+			Runtime.Log("PUT value: ");
+			Runtime.Log(value.AsString());
+			Runtime.Log("----------");
 			Storage.Put(Storage.CurrentContext, key, value);
-		}
-
-		public static void PutUsingList(byte[] key, byte[] newItem)
-		{
-			byte[] listTokenized = Get(key);
-			byte[] listTokenizedWithNewItem = listTokenized.Concat(newItem);
-			byte[] listTokenizedWithDelimiter = listTokenizedWithNewItem.Concat(new byte[] { DELIM });
-			Put(key, listTokenizedWithDelimiter);
 		}
 	}
 }

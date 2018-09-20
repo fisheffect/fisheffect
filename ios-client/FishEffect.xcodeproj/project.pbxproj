@@ -1,0 +1,431 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA58ED8C214C578A00FF9808 /* NeoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC94E8F214C4E5A00BC932F /* NeoSwift.framework */; };
+		FA58ED8D214C578A00FF9808 /* NeoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAC94E8F214C4E5A00BC932F /* NeoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA7E664A2152D54800B6DD25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E66482152D54800B6DD25 /* LoginViewController.swift */; };
+		FA7E664B2152D54800B6DD25 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7E66492152D54800B6DD25 /* LoginViewController.xib */; };
+		FAC94E77214C4DB700BC932F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC94E76214C4DB700BC932F /* AppDelegate.swift */; };
+		FAC94E7E214C4DBA00BC932F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC94E7D214C4DBA00BC932F /* Assets.xcassets */; };
+		FAC94E81214C4DBA00BC932F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC94E7F214C4DBA00BC932F /* LaunchScreen.storyboard */; };
+		FAC94E94214C4E9600BC932F /* InteractionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC94E92214C4E9600BC932F /* InteractionViewController.swift */; };
+		FAC94E95214C4E9600BC932F /* InteractionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC94E93214C4E9600BC932F /* InteractionViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA58ED8E214C578A00FF9808 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAC94E89214C4E5900BC932F /* NeoSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 75CDAE081F47F90800B05C51;
+			remoteInfo = NeoSwift;
+		};
+		FAC94E8E214C4E5A00BC932F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAC94E89214C4E5900BC932F /* NeoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75CDAE091F47F90800B05C51;
+			remoteInfo = NeoSwift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FA58ED90214C578A00FF9808 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FA58ED8D214C578A00FF9808 /* NeoSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FA7E66482152D54800B6DD25 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FA7E66492152D54800B6DD25 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		FAC94E73214C4DB700BC932F /* FishEffect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishEffect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAC94E76214C4DB700BC932F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FAC94E7D214C4DBA00BC932F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAC94E80214C4DBA00BC932F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FAC94E82214C4DBA00BC932F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC94E89214C4E5900BC932F /* NeoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NeoSwift.xcodeproj; path = "FishEffect/neo-swift/NeoSwift.xcodeproj"; sourceTree = "<group>"; };
+		FAC94E92214C4E9600BC932F /* InteractionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionViewController.swift; sourceTree = "<group>"; };
+		FAC94E93214C4E9600BC932F /* InteractionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InteractionViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAC94E70214C4DB700BC932F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA58ED8C214C578A00FF9808 /* NeoSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAC94E6A214C4DB700BC932F = {
+			isa = PBXGroup;
+			children = (
+				FAC94E89214C4E5900BC932F /* NeoSwift.xcodeproj */,
+				FAC94E75214C4DB700BC932F /* FishEffect */,
+				FAC94E91214C4E6C00BC932F /* ViewController */,
+				FAC94E74214C4DB700BC932F /* Products */,
+				FAC94E97214C52B900BC932F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FAC94E74214C4DB700BC932F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAC94E73214C4DB700BC932F /* FishEffect.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAC94E75214C4DB700BC932F /* FishEffect */ = {
+			isa = PBXGroup;
+			children = (
+				FAC94E76214C4DB700BC932F /* AppDelegate.swift */,
+				FAC94E7D214C4DBA00BC932F /* Assets.xcassets */,
+				FAC94E7F214C4DBA00BC932F /* LaunchScreen.storyboard */,
+				FAC94E82214C4DBA00BC932F /* Info.plist */,
+			);
+			path = FishEffect;
+			sourceTree = "<group>";
+		};
+		FAC94E8A214C4E5900BC932F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAC94E8F214C4E5A00BC932F /* NeoSwift.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAC94E91214C4E6C00BC932F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FAC94E92214C4E9600BC932F /* InteractionViewController.swift */,
+				FAC94E93214C4E9600BC932F /* InteractionViewController.xib */,
+				FA7E66482152D54800B6DD25 /* LoginViewController.swift */,
+				FA7E66492152D54800B6DD25 /* LoginViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FAC94E97214C52B900BC932F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAC94E72214C4DB700BC932F /* FishEffect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAC94E85214C4DBA00BC932F /* Build configuration list for PBXNativeTarget "FishEffect" */;
+			buildPhases = (
+				FAC94E6F214C4DB700BC932F /* Sources */,
+				FAC94E70214C4DB700BC932F /* Frameworks */,
+				FAC94E71214C4DB700BC932F /* Resources */,
+				FA58ED90214C578A00FF9808 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA58ED8F214C578A00FF9808 /* PBXTargetDependency */,
+			);
+			name = FishEffect;
+			productName = FishEffect;
+			productReference = FAC94E73214C4DB700BC932F /* FishEffect.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAC94E6B214C4DB700BC932F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = FishEffect;
+				TargetAttributes = {
+					FAC94E72214C4DB700BC932F = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = FAC94E6E214C4DB700BC932F /* Build configuration list for PBXProject "FishEffect" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAC94E6A214C4DB700BC932F;
+			productRefGroup = FAC94E74214C4DB700BC932F /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FAC94E8A214C4E5900BC932F /* Products */;
+					ProjectRef = FAC94E89214C4E5900BC932F /* NeoSwift.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				FAC94E72214C4DB700BC932F /* FishEffect */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FAC94E8F214C4E5A00BC932F /* NeoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NeoSwift.framework;
+			remoteRef = FAC94E8E214C4E5A00BC932F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAC94E71214C4DB700BC932F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7E664B2152D54800B6DD25 /* LoginViewController.xib in Resources */,
+				FAC94E81214C4DBA00BC932F /* LaunchScreen.storyboard in Resources */,
+				FAC94E95214C4E9600BC932F /* InteractionViewController.xib in Resources */,
+				FAC94E7E214C4DBA00BC932F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAC94E6F214C4DB700BC932F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7E664A2152D54800B6DD25 /* LoginViewController.swift in Sources */,
+				FAC94E77214C4DB700BC932F /* AppDelegate.swift in Sources */,
+				FAC94E94214C4E9600BC932F /* InteractionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA58ED8F214C578A00FF9808 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NeoSwift;
+			targetProxy = FA58ED8E214C578A00FF9808 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FAC94E7F214C4DBA00BC932F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAC94E80214C4DBA00BC932F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAC94E83214C4DBA00BC932F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FAC94E84214C4DBA00BC932F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAC94E86214C4DBA00BC932F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2DBGDDDF5X;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = FishEffect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.martinlabs.fisheffect;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FAC94E87214C4DBA00BC932F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2DBGDDDF5X;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = FishEffect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.martinlabs.fisheffect;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAC94E6E214C4DB700BC932F /* Build configuration list for PBXProject "FishEffect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC94E83214C4DBA00BC932F /* Debug */,
+				FAC94E84214C4DBA00BC932F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAC94E85214C4DBA00BC932F /* Build configuration list for PBXNativeTarget "FishEffect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC94E86214C4DBA00BC932F /* Debug */,
+				FAC94E87214C4DBA00BC932F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAC94E6B214C4DB700BC932F /* Project object */;
+}

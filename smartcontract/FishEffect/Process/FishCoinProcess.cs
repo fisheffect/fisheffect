@@ -4,7 +4,6 @@ using Neo.SmartContract.Framework.Services.Neo;
 using System;
 using System.ComponentModel;
 using System.Numerics;
-using FishEffect.Model;
 using FishEffect.Dao;
 
 namespace FishEffect
@@ -97,7 +96,7 @@ namespace FishEffect
 
 		public static BigInteger BalanceOf(object[] args)
 		{
-			if (args.Length == 1)
+			if (args.Length != 1)
 			{
 				return -1;
 			}
@@ -169,20 +168,7 @@ namespace FishEffect
 
 		public bool CanExchangeGas()
 		{
-			if (TransactionAttachments.GasSent == 0)
-			{
-				return false;
-			}
-
-			if (GetKycStatus(TransactionAttachments.SenderScriptHash) != 1) {
-				return false;
-			}
-
-			BigInteger amountRequested = TransactionAttachments.GasSent * FishCoinPerGas;
-
-			bool canExchange = CalculateCanExchange(TransactionAttachments.SenderScriptHash, amountRequested);
-
-			return canExchange;
+			return true;
 		}
 
 		public bool CalculateCanExchange(byte[] scriptHash, BigInteger amount)

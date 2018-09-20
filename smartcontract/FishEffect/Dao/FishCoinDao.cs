@@ -8,23 +8,20 @@ namespace FishEffect
 {
 	class FishCoinDao
 	{
-		private static readonly byte[] _prefixOfBalances = { (byte)'A', (byte)'.' };
-		private static readonly byte[] _prefixOfKnownScriptHashes = { (byte) 'B', (byte)'.' };
-		private static readonly byte[] _prefixOfExchangedByScriptHash = { (byte)'C', (byte)'.' };
 
 		private static byte[] KeyOfBalance(byte[] scriptHash)
 		{
-			return _prefixOfBalances.Concat(scriptHash);
+			return AppGlobals.PrefixOfBalances.Concat(scriptHash);
 		}
 
 		private static byte[] KeyOfKyc(byte[] scriptHash)
 		{
-			return _prefixOfKnownScriptHashes.Concat(scriptHash);
+			return AppGlobals.PrefixOfKnownScriptHashes.Concat(scriptHash);
 		}
 
 		private static byte[] KeyOfExchangedByScriptHash(byte[] scriptHash)
 		{
-			return _prefixOfExchangedByScriptHash.Concat(scriptHash);
+			return AppGlobals.PrefixOfExchangedByScriptHash.Concat(scriptHash);
 		}
 
 		private static byte[] KeyOfTotalSupply()
@@ -49,9 +46,9 @@ namespace FishEffect
 			GenericDao.Put(kycKey, status.AsByteArray());
 		}
 
-		public static void UpdateBalance(byte[] from, BigInteger value)
+		public static void UpdateBalance(byte[] reef, BigInteger value)
 		{
-			byte[] balanceKey = KeyOfBalance(from);
+			byte[] balanceKey = KeyOfBalance(reef);
 			GenericDao.Put(balanceKey, value.AsByteArray());
 		}
 

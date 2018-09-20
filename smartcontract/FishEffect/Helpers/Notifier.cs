@@ -34,29 +34,29 @@ namespace FishEffect
 			NotifyTransfer(from, to, amount);
 		}
 
-		public static void ImigrantFish(byte[] aquarium, byte[] fish)
+		public static void ImmigrantFish(byte[] reef, byte[] fish)
 		{
-			NotificationFishAppeared(aquarium, fish);
+			NotificationFishAppeared(reef, fish);
 		}
 
-		public static void NewBornFish(byte[] aquarium, byte[] fish)
+		public static void NewBornFish(byte[] reef, byte[] fish)
 		{
-			NotifyNewFishBaby(aquarium, fish);
+			NotifyNewFishBaby(reef, fish);
 		}
 
-		public static void FishEaten(byte[] aquarium, byte[] prey, byte[] preadator)
+		public static void FishEaten(byte[] reef, byte[] prey, byte[] preadator)
 		{
-			NotifyFishEaten(aquarium, prey, preadator);
+			NotifyFishEaten(reef, prey, preadator);
 		}
 
-		public static void FishForSale(byte[] aquarium, byte[] fish, BigInteger value)
+		public static void FishForSale(byte[] reef, byte[] fish, BigInteger value)
 		{
-			NotifyFishForSale(aquarium, fish, value);
+			NotifyFishForSale(reef, fish, value);
 		}
 
-		public static void FishExchanged(byte[] aquarium, byte[] fish, BigInteger value)
+		public static void FishExchanged(byte[] reef, byte[] fish, BigInteger value)
 		{
-			NotifyFishExchanged(aquarium, fish, value);
+			NotifyFishExchanged(reef, fish, value);
 		}
 
 	}
