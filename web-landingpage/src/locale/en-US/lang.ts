@@ -222,6 +222,12 @@ export default {
         copyright: 'Simpli © 2018 // www.simpli.com.br // made in Brazil',
       },
     },
+
+    tutorials: {
+      main: {
+        title: 'The Tutorials!',
+      },
+    },
   },
 
   persist: {

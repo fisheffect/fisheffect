@@ -4,9 +4,9 @@
       <div class="container">
 
         <div class="brand">
-          <div class="btn" @click="scrollTo('header')">
+          <router-link to="/" class="btn" @click.native="scrollTo('header')">
             <img src="../assets/img/logo@3x.png" alt="fish-effect">
-          </div>
+          </router-link>
         </div>
 
         <div class="slot-1">
@@ -82,20 +82,20 @@
       <transition name="fade-left-big" mode="out-in">
         <nav class="sidebar" v-if="sidebar">
           <div class="brand">
-            <div class="btn" @click="scrollTo('header'); hideSidebar()">
+            <router-link to="/" class="btn" @click.native="scrollTo('header'); hideSidebar()">
               <img src="../assets/img/logo@3x.png" alt="fish-effect">
-            </div>
+            </router-link>
           </div>
 
           <div class="slot-1">
             <ul>
               <li>
-                <button class="special">
+                <button class="special" @click="hideSidebar()">
                   {{$t('navbar.buyFishCoins')}}
                 </button>
               </li>
               <li>
-                <router-link tag="button" to="/tutorials" class="flat primary">
+                <router-link tag="button" to="/tutorials" class="flat primary" @click.native="hideSidebar()">
                   {{$t('navbar.tutorials')}}
                 </router-link>
               </li>
