@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator'
-import {Action} from 'vuex-class'
+import {Getter, Action} from 'vuex-class'
 import Navbar from '@/components/Navbar.vue'
 
 @Component({

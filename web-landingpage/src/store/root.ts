@@ -8,6 +8,7 @@ const app = require('../../package.json')
 
 // initial root state
 export const state: RootState = {
+  currentSection: null,
   version: app.version,
   language: defaultLang,
   currency: defaultCurrency,
@@ -16,6 +17,7 @@ export const state: RootState = {
 
 // root getters
 export const getters: GetterTree<RootState, RootState> = {
+  currentSection: ({currentSection}) => currentSection,
   version: ({version}) => version,
   language: ({language}) => language,
   currency: ({currency}) => currency,
@@ -24,6 +26,15 @@ export const getters: GetterTree<RootState, RootState> = {
 
 // root actions
 export const actions: ActionTree<RootState, RootState> = {
+  /**
+   * Change app language
+   * @param commit
+   * @param val
+   */
+  setCurrentSection: ({commit}, val: string | null) => {
+    commit(types.SET_CURRENT_SECTION, val)
+  },
+
   /**
    * Change app language
    * @param commit
@@ -61,6 +72,10 @@ export const actions: ActionTree<RootState, RootState> = {
 
 // root mutations
 export const mutations: MutationTree<RootState> = {
+  // Set Lang mutation
+  [types.SET_CURRENT_SECTION](state, val) {
+    state.currentSection = val
+  },
   // Set Lang mutation
   [types.SET_LANG](state, val) {
     state.language = val

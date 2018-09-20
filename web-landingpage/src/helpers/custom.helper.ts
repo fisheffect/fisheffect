@@ -8,7 +8,7 @@ import {TweenLite} from 'gsap'
 require('gsap/ScrollToPlugin')
 
 export const scrollTo = (query: string) =>
-  TweenLite.to(window, 1, {scrollTo: {y: query, autoKill: false}})
+  TweenLite.to(window, 1, {scrollTo: {y: query, offsetY: 90, autoKill: false}})
 
 export const tooltip = ({title, body, footer}: any) => ({content: TooltipTmp(title, body, footer)})
 
