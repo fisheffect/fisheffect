@@ -6,7 +6,7 @@ sidebar_label: Address
 
 
 # NEO Address
-An address in NEO is the result of the hash of your contract, with a '0x21' (TODO: Check) prefix.
+An address in NEO is the result of the hash of your contract, with a '0x23' prefix (0x23 is the 'Address Version').
 We present it in Base58 encoding. Example:
 `3ff4cc2c6e81f63e48bfafd54295368caecaf742` converts into `AMc3UR534Kjc4eTwntpEMkebCiMinrk94J`
 
