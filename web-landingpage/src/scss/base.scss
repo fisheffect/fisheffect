@@ -302,7 +302,31 @@ button, input[type=submit], .btn {
       @extend .pal-black-50.box-shadow.highlight;
     }
   }
-  
+
+  &.special {
+    @extend .pal-light-navy-blue.text;
+    @extend .pal-sun-yellow.bg;
+
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      @extend .pal-light-navy-blue.text;
+      @extend .pal-sun-yellow.bg.lighten;
+    }
+
+    &:focus {
+      @extend .pal-light-navy-blue.box-shadow.highlight.lighten;
+    }
+  }
+
   &.primary {
     @extend .pal-black-70.text;
     @extend .pal-primary.bg;

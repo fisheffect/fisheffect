@@ -57,8 +57,19 @@ nav {
     margin: auto 16px;
 
     button {
-      @extend .flat.contrast;
+      //@extend .flat.contrast;
       margin: #{$padding-base / 4} 0;
+
+      &.active {
+        @extend .pal-white.text;
+      }
+
+      &.special {
+        &.active {
+          @extend .pal-light-navy-blue.text;
+          @extend .pal-white.box-shadow.deep-15;
+        }
+      }
     }
 
     @media screen and (max-width: $display-large) {

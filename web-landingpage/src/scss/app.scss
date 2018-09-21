@@ -40,6 +40,155 @@ section {
     }
   }
 
+  &.timeline {
+    @extend .pal-ocean-blue.bg;
+    @extend .pal-white.text;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 400;
+      text-align: left;
+      width: 100%;
+      hr {
+        width: 100%;
+        height: 2px;
+        margin-top: 0;
+      }
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    .timeline-sections {
+      position: relative;
+
+      &:before {
+        @extend .pal-white.bg;
+
+        content: ' ';
+        position: absolute;
+        left: calc(50% - 6px);
+        height: 100%;
+        width: 6px;
+        border-radius: 10px;
+      }
+
+      .timeline-section {
+        margin-bottom: 80px;
+        justify-content: center;
+        align-items: center;
+
+        &.inverted {
+          flex-flow: row-reverse wrap;
+
+          .col:first-child {
+            padding-left: 40px;
+
+            &:before {
+              @extend .pal-azul.bg;
+
+              content: ' ';
+              position: absolute;
+              top: calc(50% - 13px);
+              left: -13px;
+              height: 20px;
+              width: 20px;
+              border-radius: 20px;
+              box-shadow: 0 0 0 6px white;
+            }
+          }
+
+          .col:last-child {
+            padding-right: 40px;
+          }
+        }
+
+        &:not(.inverted) {
+          .col:first-child {
+            padding-right: 40px;
+          }
+
+          .col:last-child {
+            padding-left: 40px;
+
+            &:before {
+              @extend .pal-azul.bg;
+
+              content: ' ';
+              position: absolute;
+              top: calc(50% - 13px);
+              left: -13px;
+              height: 20px;
+              width: 20px;
+              border-radius: 20px;
+              box-shadow: 0 0 0 6px white;
+            }
+          }
+        }
+
+        .col {
+          position: relative;
+        }
+
+        .video {
+          background: rgba(0, 0, 0, 0.38);
+          width: 100%;
+          height: 300px;
+          margin-bottom: 10px;
+        }
+      }
+
+      @media screen and (max-width: $display-small) {
+        &:before {
+          left: 32px;
+        }
+
+        .timeline-section {
+          &.inverted {
+            .col:first-child {
+              padding-left: 80px;
+
+              &:before {
+                top: unset;
+                bottom: -13px;
+                left: 26px;
+              }
+            }
+
+            .col:last-child {
+              padding-left: 80px;
+              padding-right: 4px;
+            }
+          }
+
+          &:not(.inverted) {
+            .col:first-child {
+              padding-left: 80px;
+              padding-right: 4px;
+            }
+
+            .col:last-child {
+              padding-left: 80px;
+
+              &:before {
+                top: -13px;
+                left: 26px;
+              }
+            }
+          }
+
+          .col {
+            min-width: 100%;
+          }
+
+          .video {
+            height: 150px;
+          }
+        }
+      }
+    }
+  }
+
   &.tutorials {
     @extend .transition;
     @extend .pal-azul.bg;

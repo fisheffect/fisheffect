@@ -4,41 +4,42 @@
       <div class="container">
 
         <div class="brand">
-          <div class="btn">
+          <router-link to="/" class="btn" @click.native="scrollTo('header')">
             <img src="../assets/img/logo@3x.png" alt="fish-effect">
-          </div>
+          </router-link>
         </div>
 
         <div class="slot-1">
           <ul>
             <li>
-              <button>
+              <button class="special">
+                <!--TODO: 'Buy Fish Coins' Link-->
                 {{$t('navbar.buyFishCoins')}}
               </button>
             </li>
             <li>
-              <button>
+              <router-link tag="button" to="/tutorials" class="flat primary">
+                {{$t('navbar.tutorials')}}
+              </router-link>
+            </li>
+            <li>
+              <button @click="scrollTo('.about')" :class="{active: currentSection === 'about'}" class="flat contrast">
                 {{$t('navbar.about')}}
               </button>
             </li>
             <li>
-              <button>
-                {{$t('navbar.contact')}}
-              </button>
-            </li>
-            <li>
-              <button>
-                {{$t('navbar.theTeam')}}
-              </button>
-            </li>
-            <li>
-              <button>
+              <button @click="scrollTo('.whitepaper')" :class="{active: currentSection === 'whitepaper'}" class="flat contrast">
                 {{$t('navbar.whitepaper')}}
               </button>
             </li>
             <li>
-              <button>
-                {{$t('navbar.tutorials')}}
+              <button @click="scrollTo('.team')" :class="{active: currentSection === 'team'}" class="flat contrast">
+                {{$t('navbar.theTeam')}}
+              </button>
+            </li>
+            <li>
+              <button @click="scrollTo('.contact')" :class="{active: currentSection === 'team'}" class="flat contrast">
+                {{$t('navbar.contact')}}
               </button>
             </li>
           </ul>
@@ -54,11 +55,6 @@
             <li>
               <button class="icon">
                 <img src="../assets/img/fb.svg" alt="facebook">
-              </button>
-            </li>
-            <li>
-              <button class="icon">
-                <img src="../assets/img/linkedin.svg" alt="linkedin">
               </button>
             </li>
             <li>
@@ -86,41 +82,41 @@
       <transition name="fade-left-big" mode="out-in">
         <nav class="sidebar" v-if="sidebar">
           <div class="brand">
-            <div class="btn">
+            <router-link to="/" class="btn" @click.native="scrollTo('header'); hideSidebar()">
               <img src="../assets/img/logo@3x.png" alt="fish-effect">
-            </div>
+            </router-link>
           </div>
 
           <div class="slot-1">
             <ul>
               <li>
-                <button>
+                <button class="special" @click="hideSidebar()">
                   {{$t('navbar.buyFishCoins')}}
                 </button>
               </li>
               <li>
-                <button>
+                <router-link tag="button" to="/tutorials" class="flat primary" @click.native="hideSidebar()">
+                  {{$t('navbar.tutorials')}}
+                </router-link>
+              </li>
+              <li>
+                <button @click="scrollTo('.about'); hideSidebar()" :class="{active: currentSection === 'about'}" class="flat contrast">
                   {{$t('navbar.about')}}
                 </button>
               </li>
               <li>
-                <button>
-                  {{$t('navbar.contact')}}
-                </button>
-              </li>
-              <li>
-                <button>
-                  {{$t('navbar.theTeam')}}
-                </button>
-              </li>
-              <li>
-                <button>
+                <button @click="scrollTo('.whitepaper'); hideSidebar()" :class="{active: currentSection === 'whitepaper'}" class="flat contrast">
                   {{$t('navbar.whitepaper')}}
                 </button>
               </li>
               <li>
-                <button>
-                  {{$t('navbar.tutorials')}}
+                <button @click="scrollTo('.team'); hideSidebar()" :class="{active: currentSection === 'team'}" class="flat contrast">
+                  {{$t('navbar.theTeam')}}
+                </button>
+              </li>
+              <li>
+                <button @click="scrollTo('.contact'); hideSidebar()" :class="{active: currentSection === 'team'}" class="flat contrast">
+                  {{$t('navbar.contact')}}
                 </button>
               </li>
             </ul>
@@ -141,11 +137,6 @@
               </li>
               <li>
                 <button class="icon">
-                  <img src="../assets/img/linkedin.svg" alt="linkedin">
-                </button>
-              </li>
-              <li>
-                <button class="icon">
                   <img src="../assets/img/github.svg" alt="github">
                 </button>
               </li>
@@ -161,9 +152,14 @@
 <script lang="ts">
   import {Component, Prop, Watch, Vue} from 'vue-property-decorator'
   import {Action, Getter} from 'vuex-class'
+  import {scrollTo} from '@/simpli'
 
   @Component
   export default class Navbar extends Vue {
+    @Getter('currentSection') currentSection?: string | null
+
+    scrollTo = scrollTo
+
     sidebar = false
 
     hideSidebar() {
