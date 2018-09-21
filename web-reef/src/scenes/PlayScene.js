@@ -37,11 +37,17 @@ export default class PlayScene extends Scene {
       this.showAskAddressWindow();
     }
 
+    // NeoFetcher.test("mensagem maior pra ver se buga");
+
     this.foodInteraction(food);
     this.storeInteraction(store);
     this.scaleBackground(bg, rightrocks, leftrocks);
     this.loginInteraction();
     this.askAddressInteraction();
+
+    setInterval(() => {
+      this.loadFishes(); // reload fishes each 10 seconds
+    }, 10000);
   }
 
   async loadFishes() {
@@ -131,9 +137,8 @@ export default class PlayScene extends Scene {
   }
 
   async feedReef() {
-    await NeoFetcher.feedReef();
+    const resp = await NeoFetcher.feedReef();
     toastr["success"]("You Fed the Reef");
-    await this.loadFishes();
   }
 
   fishsInLove() {
@@ -206,6 +211,8 @@ export default class PlayScene extends Scene {
     document.querySelector("#login").addEventListener("submit", async (e) => {
       e.preventDefault();
 
+      document.querySelector("#login button").disabled = true;
+
       try {
         await NeoFetcher.login(
           document.querySelector("#passphrase").value,
@@ -219,6 +226,8 @@ export default class PlayScene extends Scene {
       } catch (e) {
         toastr["error"]("Login failed")
       }
+
+      document.querySelector("#login button").disabled = false;
     });
 
     document.querySelector("#closeLogin").addEventListener("click", async (e) => {

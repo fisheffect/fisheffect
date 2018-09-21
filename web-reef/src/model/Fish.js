@@ -27,7 +27,7 @@ export default class PlayScene {
   }
 
   initRenderAndAnimation(fromCenter) {
-    let fishCenterX = this.repeatIsLeftToRight ? -150 : (this.scene.game.canvas.width + 150);
+    let fishCenterX = this.repeatIsLeftToRight ? -200 : (this.scene.game.canvas.width + 200);
     let fishCenterY = this.randomY();
 
     if (fromCenter) {
@@ -102,7 +102,7 @@ export default class PlayScene {
 
   repeatMovement(withoutDelay) {
     this.moveTo(
-      this.repeatIsLeftToRight ? (this.scene.game.canvas.width + 150) : -150,
+      this.repeatIsLeftToRight ? (this.scene.game.canvas.width + 200) : -200,
       this.randomY(),
       Math.floor(Math.random() * 18000) + 6000,
       withoutDelay ? 20 : Math.floor(Math.random() * 9000),
@@ -120,7 +120,7 @@ export default class PlayScene {
     const screenCenter = this.scene.game.canvas.width / 2;
 
     this.moveTo(
-      x > screenCenter ? (this.scene.game.canvas.width + 150) : -150,
+      x > screenCenter ? (this.scene.game.canvas.width + 200) : -200,
       this.randomY(),
       1000,
       10);
@@ -134,7 +134,7 @@ export default class PlayScene {
       10,
       () => {
         this.moveTo(
-          (this.scene.game.canvas.width / 2) - 150,
+          (this.scene.game.canvas.width / 2) - 200,
           300,
           1000,
           10,
@@ -150,7 +150,7 @@ export default class PlayScene {
       10,
       () => {
         this.moveTo(
-          (this.scene.game.canvas.width / 2) + 150,
+          (this.scene.game.canvas.width / 2) + 200,
           300,
           1000,
           10);
