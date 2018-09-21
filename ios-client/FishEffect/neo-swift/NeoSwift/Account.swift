@@ -12,7 +12,7 @@ import Security
 
 public class Account {
     //allow this to override the entire client not only the network
-    public var neoClient: NeoClient
+    public var neoClient: NeoClient?
     public var wif: String
     public var publicKey: Data
     public var privateKey: Data
@@ -35,8 +35,6 @@ public class Account {
         self.privateKey = wallet.privateKey()
         self.address = wallet.address()
         self.hashedSignature = wallet.hashedSignature()
-        //default to mainnet
-        self.neoClient = NeoClient.sharedMain
     }
     
     public init?(privateKey: String) {
@@ -47,8 +45,6 @@ public class Account {
         self.privateKey = privateKey.dataWithHexString()
         self.address = wallet.address()
         self.hashedSignature = wallet.hashedSignature()
-        //default to mainnet
-        self.neoClient = NeoClient.sharedMain
     }
     
     public init?(encryptedPrivateKey: String, passphrase: String) {
@@ -61,8 +57,6 @@ public class Account {
         self.privateKey = Data(decryptedKey)
         self.address = wallet.address()
         self.hashedSignature = wallet.hashedSignature()
-        //default to mainnet
-        self.neoClient = NeoClient.sharedMain
         guard NEP2.verify(addressHash: hash, address: wallet.address()) else { return nil }
     }
     
@@ -83,8 +77,6 @@ public class Account {
         self.privateKey = pkeyData
         self.address = wallet.address()
         self.hashedSignature = wallet.hashedSignature()
-        //default to mainnet
-        self.neoClient = NeoClient.sharedMain
     }
     
     func createSharedSecret(publicKey: Data) -> Data?{
@@ -99,17 +91,6 @@ public class Account {
     
     func decryptString(key: Data, text: String) -> String? {
         return NeoutilsDecrypt(key, text)
-    }
-    
-    func getBalance(completion: @escaping(Assets?, Error?) -> Void) {
-        neoClient.getAssets(for: self.address, params: []) { result in
-            switch result {
-            case .failure(let error):
-                completion(nil, error)
-            case .success(let assets):
-                completion(assets, nil)
-            }
-        }
     }
     
     /*
@@ -275,26 +256,6 @@ public class Account {
         
     }
     
-    
-    public func sendAssetTransaction(asset: AssetId, amount: Double, toAddress: String, attributes: [TransactionAttritbute]? = nil, completion: @escaping(Bool?, Error?) -> Void) {
-        neoClient.getAssets(for: self.address, params: []) { result in
-            switch result {
-            case .failure(let error):
-                completion(nil, error)
-            case .success(let assets):
-                let payload = self.generateSendTransactionPayload(asset: asset, amount: amount, toAddress: toAddress, assets: assets, attributes: attributes)
-                self.neoClient.sendRawTransaction(with: payload) { (result) in
-                    switch result {
-                    case .failure(let error):
-                        completion(nil, error)
-                    case .success(let response):
-                        completion(response, nil)
-                    }
-                }
-            }
-        }
-    }
-    
     /*
      * Please see the documentation here for a full description of the gas claiming
      * system in the Neo Protocol, under the section entitled "Claiming Gas"
@@ -352,7 +313,7 @@ public class Account {
                                                             contractAddress: tokenContractHash, attributes: customAttributes )
         payload += tokenContractHash.dataWithHexString().bytes
         print(payload.fullHexString)
-        neoClient.sendRawTransaction(with: payload) { (result) in
+        neoClient?.sendRawTransaction(with: payload) { (result) in
             switch result {
             case .failure(let error):
                 completion(nil, error)
@@ -369,14 +330,13 @@ public class Account {
         customAttributes.append(TransactionAttritbute(remark: remark))
         customAttributes.append(TransactionAttritbute(descriptionHex: tokenContractHash))
         
-        //send nep5 token without using utxo
         let scriptBytes = self.buildFeedReefScript(scriptHash: tokenContractHash,
                                                        fromAddress: self.address)
         var payload = self.generateInvokeTransactionPayload(assets: nil, script: scriptBytes.fullHexString,
                                                             contractAddress: tokenContractHash, attributes: customAttributes )
         payload += tokenContractHash.dataWithHexString().bytes
         print(payload.fullHexString)
-        neoClient.sendRawTransaction(with: payload) { (result) in
+        neoClient?.sendRawTransaction(with: payload) { (result) in
             switch result {
             case .failure(let error):
                 completion(nil, error)
@@ -397,7 +357,7 @@ public class Account {
         var payload = self.generateInvokeTransactionPayload(assets: assets, script: scriptBytes.fullHexString,
                                                             contractAddress: contractHash, attributes: nil)
         payload = payload + contractHash.dataWithHexString().bytes
-        self.neoClient.sendRawTransaction(with: payload) { (result) in
+        self.neoClient?.sendRawTransaction(with: payload) { (result) in
             switch result {
             case .failure(let error):
                 completion(nil, error)

@@ -41,50 +41,8 @@ public enum Network: String {
     case privateNet
 }
 
-public class NEONetworkMonitor {
-    private init() {
-        self.network =  self.load()
-    }
-    public static let sharedInstance = NEONetworkMonitor()
-    public var network: NEONetwork?
-    
-    private func load() -> NEONetwork? {
-        guard let path = Bundle(for: type(of: self)).path(forResource: "nodes", ofType: "json") else {
-            return nil
-        }
-        guard let fileData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
-            return nil
-        }
-        let decoder = JSONDecoder()
-        
-        guard let json = try? JSONSerialization.jsonObject(with: fileData, options: []) as! JSONDictionary else {
-            return nil
-        }
-        
-        guard let data = try? JSONSerialization.data(withJSONObject: json, options: []),
-            let result = try? decoder.decode(NEONetwork.self, from: data) else {
-                return nil
-        }
-        return result
-    }
-    
-    public static func autoSelectBestNode() -> String? {
-        let networks = NEONetworkMonitor().load()
-        let nodes = networks?.mainNet.nodes.map({$0.URL}).joined(separator: ",")
-        guard let bestNode =  NeoutilsSelectBestSeedNode(nodes) else {
-            return nil
-        }
-        return bestNode.url()
-    }
-    
-}
-
 public class NeoClient {
-    public var network: Network = .test
     public var seed = "http://seed3.o3node.org:10332"
-    public var fullNodeAPI = "http://18.191.236.185:4000/v2/"
-    public static let sharedTest = NeoClient(network: .test)
-    public static let sharedMain = NeoClient(network: .test)
     private init() {}
     
     enum RPCMethod: String {
@@ -113,19 +71,7 @@ public class NeoClient {
         case getTransactionHistory = "address/history/"
     }
     
-    public init(seed: String) {
-        self.seed = seed
-    }
-    
-    public init(network: Network) {
-        self.network = network
-        fullNodeAPI = "https://platform.o3.network/api/v1/neo/"
-        seed = "http://seed1.neo.org:10332"
-    }
-    
-    public init(network: Network, seedURL: String) {
-        self.network = network
-        fullNodeAPI = "http://18.222.172.10:20332/"
+    public init(seedURL: String) {
         seed = seedURL
     }
     
@@ -244,47 +190,6 @@ public class NeoClient {
                 }
                 
                 let result = NeoClientResult.success(txs)
-                completion(result)
-            }
-        }
-    }
-    
-    public func getAssets(for address: String, params: [Any]?, completion: @escaping(NeoClientResult<Assets>) -> ()) {
-        let url = fullNodeAPI + address + "/" + apiURL.getUTXO.rawValue
-        sendFullNodeRequest(url, params: params) { result in
-            
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                let decoder = JSONDecoder()
-                guard let data = try? JSONSerialization.data(withJSONObject: response["result"], options: .prettyPrinted),
-                    let assets = try? decoder.decode(Assets.self, from: data) else {
-                        completion(.failure(.invalidData))
-                        return
-                }
-                
-                let result = NeoClientResult.success(assets)
-                completion(result)
-            }
-        }
-    }
-    
-    public func getTransactionHistory(for address: String, completion: @escaping (NeoClientResult<TransactionHistory>) -> ()) {
-        let url = fullNodeAPI + apiURL.getTransactionHistory.rawValue + address
-        sendFullNodeRequest(url, params: nil) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                let decoder = JSONDecoder()
-                guard let data = try? JSONSerialization.data(withJSONObject: response, options: .prettyPrinted),
-                    let history = try? decoder.decode(TransactionHistory.self, from: data) else {
-                        completion(.failure(.invalidData))
-                        return
-                }
-                
-                let result = NeoClientResult.success(history)
                 completion(result)
             }
         }

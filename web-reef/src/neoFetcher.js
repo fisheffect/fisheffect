@@ -2,7 +2,7 @@ import Neon, { wallet, rpc, api } from '@cityofzion/neon-js';
 
 const contractPath = 'http://18.191.236.185:30333';
 const neoscan = 'http://18.191.236.185:4000/api/main_net';
-const scriptHash = '13c05d1ff69d3ad1cbdb89f729da9584893303a9';
+const scriptHash = '9e156e91a703e6a0c05701d0e210f985ae9f5eef';
 
 const privateNet = new rpc.Network({
   name: 'PrivateNet',
@@ -41,26 +41,31 @@ export default {
 
     const resp = await rpc.Query.invokeScript(script).execute(contractPath);
 
-    return resp.result.stack && resp.result.stack.length ? resp.result.stack[1].value : null;
+    return {
+      result: resp.result.stack && resp.result.stack.length ? resp.result.stack[resp.result.stack.length - 1].value : null,
+      gasConsumed: resp.result.gas_consumed
+    };
   },
 
-  async doInvoke(operation, gas, ...args) {
-    const resp = await api.doInvoke({
+  async doInvoke(operation, ...args) {
+    const resp = await this.testInvoke(operation, ...args);
+
+    const opResult = await api.doInvoke({
       api: new api.neoscan.instance('PrivateNet'),
       net: neoscan,
       privateKey: this.userWallet.privateKey,
       address: this.userWallet.address,
       intents: [{
         assetId: Neon.CONST.ASSET_ID.GAS,
-        value: gas,
+        value: resp.gasConsumed,
         scriptHash,
       }],
       script: { scriptHash, operation, args },
-      gas: 0,
       account: this.userWallet,
+      gas: 0,
     });
 
-    return resp.response;
+    return opResult.response.result ? resp.result : "error";
   },
 
   async login(passphrase, encryptedWIF) {
@@ -73,26 +78,23 @@ export default {
 
   },
 
-  async name() {
-      const resp = await this.testInvoke('name');
-      console.log(this.hexstring2str(resp));
-  },
-
-  async buyFishFood(reefAddress) {
-    const resp = await this.doInvoke('feedReef', 3,
-      this.userWallet.publicKey);
-
-    return resp;
-  },
-
   async feedReef(reefAddress) {
-    const resp = await this.doInvoke('feedReef', 3,
+    const resp = await this.doInvoke('feedReef',
       this.reverseHex(this.userWallet.scriptHash));
 
-    return resp;
+    return this.hexstring2str(resp);
+  },
+
+  async test(msg) {
+    const resp = await this.testInvoke('test',
+      this.str2hexstring(msg));
+
+    console.log(this.hexstring2str(resp.result));
   },
 
   async getReefFishesAlive(reefAddress) {
-    return await this.testInvoke('getReefFishesAlive', this.addressToScriptHash(reefAddress));
+    const resp = await this.testInvoke('getReefFishesAlive', this.addressToScriptHash(reefAddress));
+
+    return resp.result;
   },
 }

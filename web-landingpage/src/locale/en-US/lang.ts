@@ -158,8 +158,75 @@ export default {
       submit: 'Submit',
     },
 
-    dashboard: {
-      title: 'Dashboard',
+    landingPage: {
+      main: {
+        title: 'Be the hero of the oceans! Make your own blockchain aquarium',
+        panelTitle: 'Limited Offer',
+        panelText1: '1 GAS = 500 + 10%',
+        panelText2: 'This is NOT a Real ICO See below',
+        buyFishCoins: 'Buy Fish Coins',
+      },
+      tutorials: {
+        title: 'This is not a real ICO. This is a tutorial for blockchain minds. Go to the tutorials',
+      },
+      about: {
+        title: 'About',
+        subtitle1: 'The first ever Blockchain aquarium!',
+        subtitle2: 'Dive into the Neo Blockchain and learn everything you need to make your aquarium!',
+        feature1: 'Buy and Sell fishes!',
+        feature2: 'More than 2 million Fish Design Possibilities!',
+        feature3: 'Feed the Fish',
+      },
+      whitepaper: {
+        title: 'WhiteFishPaper',
+        linkTitle: 'Download the Whitepaper',
+        linkHref: '#',
+      },
+      buy: {
+        title: 'Buy Fish Coins and help us!',
+        subtitle1: 'Fish Coins are used to feed the fish!',
+        subtitle2: 'Go ahead, have some fun!',
+        buyFishCoins: 'Buy Fish Coins',
+      },
+      team: {
+        title: 'The Fish Effect Team',
+        fish1: {
+          name: 'Lingodo Mares',
+          role: 'CEO',
+        },
+        fish2: {
+          name: 'Piraño Blue',
+          role: 'CTO',
+        },
+        fish3: {
+          name: 'Small Mouth Thompson',
+          role: 'CFO',
+        },
+        fish4: {
+          name: 'Pinky Shark',
+          role: 'Graphics',
+        },
+      },
+      contact: {
+        title: 'Contact Us!',
+        subtitle1: 'Yes! We do have internet in the middle of the ocean.',
+        subtitle2: 'Send as a message!',
+        form: {
+          name: 'Name',
+          email: 'E-Mail',
+          message: 'Message',
+          send: 'Send',
+        },
+      },
+      footer: {
+        copyright: 'Simpli © 2018 // www.simpli.com.br // made in Brazil',
+      },
+    },
+
+    tutorials: {
+      main: {
+        title: 'The Tutorials!',
+      },
     },
   },
 
