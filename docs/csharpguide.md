@@ -1,7 +1,8 @@
+---
 id: csharpguide
 title: Smart Contract Development using C# in Windows
 sidebar_label: C# Smart Contract Development
-
+---
 
 TODO: Upload Video
 # Configuring your machine
