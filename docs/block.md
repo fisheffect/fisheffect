@@ -14,5 +14,3 @@ A block header is used to identify a particular block on an entire blockchain an
 ## Conjunto de Transacoes
 
 A Blockchain transaction can be defined as a small unit of task that is stored in public records. These records also knows as blocks. These blocks are executed, implemented and stored in blockchain only after the validation by all persons involved in the blockchain network. Each previous transaction can be review at any time but cannot update.
-
-

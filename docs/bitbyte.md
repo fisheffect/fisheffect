@@ -17,9 +17,11 @@ Usado com frequência para especificar o tamanho ou quantidade da memória ou da
 
 ##  UTF-8
 
- Tipo de codificação binária (Unicode) de comprimento variável. Pode representar qualquer caracter universal padrão do Unicode, sendo também compatível com o ASCII. 
+ Tipo de codificação binária (Unicode) de comprimento variável. Pode representar qualquer caracter universal padrão do Unicode, sendo também compatível com o ASCII.
 
 ##  HexString
+
+##  Base58
 
 ##  UINT160
 
@@ -28,5 +30,3 @@ A UInt160 is used to represent a 20 byte hash, and might also be referred to as 
 ##  UINT256
 
 A UInt256 is used to represent a 32 byte hash. This is normally a hash of a Transaction object or a Block
- 
-            
