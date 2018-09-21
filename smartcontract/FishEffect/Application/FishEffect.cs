@@ -6,11 +6,11 @@ using System.Numerics;
 
 namespace FishEffect
 {
+	/// <summary>
+	/// Front Door for the Smart Contract Operations
+	/// </summary>
 	public class FishEffect : SmartContract
 	{
-
-		public static BigInteger _consensusData = 0;
-		public static BigInteger _randomStep = 1;
 
 		#region Enterprise Assets
 		#endregion
@@ -23,7 +23,6 @@ namespace FishEffect
 			}
 			else if (Runtime.Trigger == TriggerType.Application)
 			{
-                _consensusData = 0;
                 object returnValue = null;
 
                 if (operation == "symbol")

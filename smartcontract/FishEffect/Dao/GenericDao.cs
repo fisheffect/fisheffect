@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace FishEffect
 {
+	/// <summary>
+	/// Storage I/O
+	/// </summary>
 	class GenericDao
 	{
 

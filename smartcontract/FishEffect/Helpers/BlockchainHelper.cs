@@ -7,6 +7,9 @@ using System.Numerics;
 
 namespace FishEffect.Helpers
 {
+	/// <summary>
+	/// Helper for Blockchain specific operations
+	/// </summary>
 	class BlockchainHelper
 	{
         public static BigInteger GetConsensusData()
