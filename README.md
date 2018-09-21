@@ -139,19 +139,19 @@ Fish Effect is a fictional project with the intent to provide basic knowledge in
     - Token liquidity;
   - Team;
   - Legal regulation and compliance;
-	- Bonus to early adopters;
+  - Bonus to early adopters;
   - Your contact list;
-    - KYC;
-	- Air Drops;
-  - Roadmaps;
-	- Bounty Programs;
+  - KYC;
+  - Air Drops;
+  - Roadmap;
+  - Bounty Programs;
     - NEO Bounty Program;
-	- Financial Planning;
+  - Financial Planning;
   - Community Management;
-	- Marketing Strategy;
+  - Marketing Strategy;
   - Trading your token in an exchange;
     - Switcheo
-	- White-paper;
+  - White-paper;
 
 #### Building your own Token - Technical execution
   - Supported NEPs;
