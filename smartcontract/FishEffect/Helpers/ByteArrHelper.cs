@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace FishEffect.Helpers
 {
+    /// <summary>
+    /// Helper for managing Byte Array operations
+    /// </summary>
     public class ByteArrHelper
     {
         public static byte[] InTheMiddle(byte[] subject, byte[] newInfo, BigInteger start, BigInteger middle1, BigInteger middle2)

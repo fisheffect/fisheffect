@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace FishEffect.Helpers
 {
+	/// <summary>
+	/// Helper to deal with the Fish byte array, builders and get/set operations
+	/// </summary>
     public class FishManager
     {
 	    #region BUILDERS

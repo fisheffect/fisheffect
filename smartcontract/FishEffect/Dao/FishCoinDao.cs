@@ -6,9 +6,13 @@ using System.Numerics;
 
 namespace FishEffect
 {
+	/// <summary>
+	/// Responsible for FishCoin Persistence
+	/// </summary>
 	class FishCoinDao
 	{
 
+		#region KEYS
 		private static byte[] KeyOfBalance(byte[] scriptHash)
 		{
 			return AppGlobals.PrefixOfBalances.Concat(scriptHash);
@@ -39,6 +43,7 @@ namespace FishEffect
 			byte[] kycKey = KeyOfKyc(scriptHash);
 			return GenericDao.Get(kycKey).AsBigInteger();
 		}
+		#endregion
 
 		public static void UpdateKYCStatus(byte[] scriptHash, BigInteger status)
 		{

@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace FishEffect
 {
+	/// <summary>
+	/// Responsible for Reef and Fishes Persistence
+	/// </summary>
 	class ReefDao
 	{
 		private static byte[] KeyOfReefFishesAlive(byte[] scriptHash)
