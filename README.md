@@ -75,6 +75,10 @@ Fish Effect is a fictional project with the intent to provide basic knowledge in
   - Notification Server;
   - NEO 3.0;
     - CGas;
+    - Roadmap;
+  - NEO FS;
+    - IPFS;
+
 
 #### Setting up a Development Environment in Windows using NEO Debugger Tools;
   - Why C#;
@@ -87,6 +91,16 @@ Fish Effect is a fictional project with the intent to provide basic knowledge in
   - Why Python;
   - Configuring the compiler;
   - Using breakpoints;
+
+#### Application Design
+  - Blockchain constraints;
+  - Confirmation time;
+  - Notifications;
+  - Oracles;
+    - Adding offchain
+  - UI Considerations;
+  - nOS;
+  - MCT;
 
 #### NEO Smart Contract Development using C#;
   - Available types;
@@ -122,6 +136,7 @@ Fish Effect is a fictional project with the intent to provide basic knowledge in
     - Token distribution;
     - Token inflation;
     - Token utility;
+    - Token liquidity;
   - Team;
   - Legal regulation and compliance;
 	- Bonus to early adopters;
@@ -134,11 +149,13 @@ Fish Effect is a fictional project with the intent to provide basic knowledge in
 	- Financial Planning;
   - Community Management;
 	- Marketing Strategy;
+  - Trading your token in an exchange;
+    - Switcheo
 	- White-paper;
 
 #### Building your own Token - Technical execution
 	- Supported NEPs;
-  - NEP-5, NEP-10 (TODO: Complete list)
+    - NEP-5, NEP-10 (TODO: Complete list)
   - Using a template;
     - C# Template;
     - Python Template;
