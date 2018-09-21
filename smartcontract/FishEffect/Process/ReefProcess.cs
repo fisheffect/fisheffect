@@ -76,12 +76,12 @@ namespace FishEffect
 			return fishes;
 		}
 
-		public static bool FeedReef(object[] args)
+		public static string FeedReef(object[] args)
 		{
 			if (args.Length != 1)
 			{
 				Runtime.Log("* No Args");
-				return false;
+				return "no args";
 			}
 
 			byte[] reef = (byte[]) args[0];
@@ -90,7 +90,7 @@ namespace FishEffect
 			if (!Runtime.CheckWitness(reef))
 			{
 				Runtime.Log("* Not the Owner");
-				return false;
+				return "not owner";
 			}
 			
 			BigInteger currentBlockHeight = BlockchainHelper.GetHeight(); // used in the whole method
@@ -100,7 +100,7 @@ namespace FishEffect
 			if (currentBlockHeight == lastFedBH)
 			{
 				Runtime.Log("* Fishes are not hungry");
-				return false;
+				return "not hungry";
 			}
 			
 			byte[] fishesAlive = ReefDao.GetReefFishesAlive(reef); // fishes alive on the reef, used in the whole method
@@ -117,7 +117,7 @@ namespace FishEffect
 			if (balance < fishesAliveLength || balance <= 0)
 			{
 				Runtime.Log("* Not enough food");
-				return false;
+				return "no food";
 			}
 
 			// variables used to generate random
@@ -290,7 +290,7 @@ namespace FishEffect
 			
 			Runtime.Log("* End :)");
 
-			return true;
+			return "success";
 		}
 
 		private static byte[] IncrementQuantityOfFeeds(byte[] fishes, BigInteger fishesLength)

@@ -78,6 +78,9 @@ namespace FishEffect
                 else if (operation == "getReefFishesDead")
                 {
                     returnValue = ReefProcess.GetReefFishesDead(args);
+                } else if (operation == "test")
+                {
+	                returnValue = args[0];
                 }
 
                 return returnValue;
