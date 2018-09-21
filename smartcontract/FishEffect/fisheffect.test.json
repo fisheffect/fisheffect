@@ -159,6 +159,14 @@
                 "transfer",
                 [ "0xea2b832323fb5e69e7359bb559c1dd902da800a5", "0xea2b832323fb5e69e7359bb559c1dd902da800a5", 10 ]
             ]
+        },
+        {
+            "name": "test",
+            "method": "Main",
+            "params": [
+                "test",
+                [ "0xea2b832323fb5e69e7359bb559c1dd902da800a5"]
+            ]
         }
     ]
 }
