@@ -154,8 +154,8 @@ Fish Effect is a fictional project with the intent to provide basic knowledge in
 	- White-paper;
 
 #### Building your own Token - Technical execution
-	- Supported NEPs;
-    - NEP-5, NEP-10 (TODO: Complete list)
+  - Supported NEPs;
+    - NEP-5, NEP-10
   - Using a template;
     - C# Template;
     - Python Template;
