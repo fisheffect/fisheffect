@@ -4,6 +4,7 @@
     	"blockheader","address","contract","scripthash","networks","utxo",
     	"rpc","lightwallet","nodes","consenso","byteorder","neo30","memorypool",
     	"contracttrigger","interopinterface","networkprotocol","elections", "claiminggas", "configurationfiles"
-    	]
+    	],
+    "NEO Smart Contract Interfacing": ["interfacing_web", "interfacing_ios"]
 	}
 }

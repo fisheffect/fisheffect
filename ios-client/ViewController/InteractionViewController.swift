@@ -11,14 +11,13 @@ import NeoSwift
 
 class InteractionViewController: UIViewController {
 
-    let neoClient = NeoClient(network: .main, seedURL: "http://18.191.236.185:30333")
+    let neoClient = NeoClient(seedURL: "http://18.191.236.185:30333")
     let smartcontract_hash = "13c05d1ff69d3ad1cbdb89f729da9584893303a9"
     var account: Account?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationItem.setHidesBackButton(true, animated: false)
-//        self.account = Account(wif: "KwxrTNGVC62dZ76PeCMnSPgxJdWVNktdvP9scjdvhwLPB9Nr6yDB")
         self.account?.neoClient = self.neoClient
     }
 

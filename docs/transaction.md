@@ -14,4 +14,3 @@ sidebar_label: Transação
 - RegisterTransaction assets register
 - ContractTransaction contract transaction
 - AgencyTransaction	 agency transaction
-
