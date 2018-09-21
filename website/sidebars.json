@@ -1,6 +1,6 @@
 {
   "docs": {
-    "Overview": ["bloco","transacao","hash","blockchain","bitbyte",
+    "Overview": ["block","transacao","hash","blockchain","bitbyte",
     	"blockheader","address","contract","scripthash","networks","utxo",
     	"rpc","lightwallet","nodes","consenso","byteorder","neo30","memorypool",
     	"contracttrigger","interopinterface","networkprotocol","elections", "claiminggas", "configurationfiles"
