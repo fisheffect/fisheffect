@@ -1,10 +1,10 @@
 ---
-id: transacao
-title: Transação
-sidebar_label: Transação
+id: transaction
+title: Transaction
+sidebar_label: Transaction
 ---
 
-## Instruções executados pelo blockchain (VM)
+## Instructions executed by blockchain (VM)
 
 - MinerTransaction	assign byte fees
 - IssueTransaction	inssuance of asset

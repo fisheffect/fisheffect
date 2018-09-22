@@ -1,10 +1,15 @@
 {
   "docs": {
-    "Overview": ["block","transacao","hash","blockchain","bitbyte",
-    	"blockheader","address","contract","scripthash","networks","utxo",
-    	"rpc","lightwallet","nodes","consenso","byteorder","neo30","memorypool",
-    	"contracttrigger","interopinterface","networkprotocol","elections", "claiminggas", "configurationfiles"
-    	],
+    "Overview": ["address", "authorization", "bitbyte", "blockchain", 
+    	"buildyourtoken", "buildyourtokentechnical", "compilers", 
+    	"configurationfiles", "consensus", "contract", "contracttrigger", 
+    	"csharpguide", "getnep5", "interfacing_ios", "interfacing_web", 
+    	"interopinterface", "lightwallet", "mct", "memorypool", "neo30", 
+    	"neofs", "neovm", "networkprotocol", "networks", "nns", "nodes", 
+    	"nos", "notifications", "offchainoracle", "plugins", "pythonguide", 
+    	"rpc", "scripthash", "scripts", "setupcsharp", "setuppython", 
+    	"storage", "systemfees", "transaction", "ui", "utxo", "wallet"],
+    
     "NEO Smart Contract Interfacing": ["interfacing_web", "interfacing_ios"]
 	}
 }
