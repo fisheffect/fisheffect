@@ -8,8 +8,6 @@
     	"neofs", "neovm", "networkprotocol", "networks", "nns", "nodes", 
     	"nos", "notifications", "offchainoracle", "plugins", "pythonguide", 
     	"rpc", "scripthash", "scripts", "setupcsharp", "setuppython", 
-    	"storage", "systemfees", "transaction", "ui", "utxo", "wallet"],
-    
-    "NEO Smart Contract Interfacing": ["interfacing_web", "interfacing_ios"]
+    	"storage", "systemfees", "transaction", "ui", "utxo", "wallet"]
 	}
 }
