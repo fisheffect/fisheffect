@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Smart Contract Development using C# in Windows · fisheffect</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="TODO: Upload Video"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Smart Contract Development using C# in Windows · fisheffect"/><meta property="og:type" content="website"/><meta property="og:url" content="https://fisheffect.github.io/fisheffect//fisheffect/index.html"/><meta property="og:description" content="TODO: Upload Video"/><meta property="og:image" content="https://fisheffect.github.io/fisheffect//fisheffect/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://fisheffect.github.io/fisheffect//fisheffect/img/docusaurus.png"/><link rel="shortcut icon" href="/fisheffect/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/fisheffect/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fisheffect/"><img class="logo" src="/fisheffect/img/docusaurus.svg" alt="fisheffect"/><h2 class="headerTitleWithLogo">fisheffect</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/fisheffect/docs/address" target="_self">Docs</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Overview</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul><li class="navListItem"><a class="navItem" href="/fisheffect/docs/address">Address</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/authorization">authorization</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/bitbyte">Data Types</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/blockchain">Blockchain</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/buildyourtoken">Tokens</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/buildyourtokentechnical">buildyourtokentechnical</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/compilers">Compilers</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/configurationfiles">Configuration Files</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/consensus">DBFT - Consensus</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/contract">Contract</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/contracttrigger">Contract Triggers</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/fisheffect/docs/csharpguide">C# Smart Contract Development</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/getnep5">getnep5</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">NEO Smart Contract Interfacing</h3><ul><li class="navListItem"><a class="navItem" href="/fisheffect/docs/interfacing_ios">Swift for iOS</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Smart Contract Development using C# in Windows</h1></header><article><div><span><p>TODO: Upload Video</p>
+<h1><a class="anchor" aria-hidden="true" id="configuring-your-machine"></a><a href="#configuring-your-machine" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring your machine</h1>
+<h2><a class="anchor" aria-hidden="true" id="required-software"></a><a href="#required-software" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required Software</h2>
+<p>The first step is to install the softwares below:</p>
+<ul>
+<li>Visual Studio Community;
+<ul>
+<li>Cross Platform Development with .NET 2.1. Update your Visual Studio if you face errors.</li>
+</ul></li>
+<li>Git;</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="downloading-and-compiling-neo-debugger-tools"></a><a href="#downloading-and-compiling-neo-debugger-tools" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Downloading and compiling NEO Debugger Tools</h2>
+<p>We need to install the debugger along with it's compiler.</p>
+<ul>
+<li>Clone neo debugger tools repository: <a href="https://github.com/CityOfZion/neo-debugger-tools">https://github.com/CityOfZion/neo-debugger-tools</a></li>
+<li>Open the solution in Visual Studio and compile the whole solution;
+<ul>
+<li>It is ok if errors occur, except if they happen in the compiler or in the debugger.</li>
+</ul></li>
+<li>Check if neon.exe exist under the compiler/bin folder and that neod.exe exist under win-form-debugger/bin.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="installing-neo-contract-plugin"></a><a href="#installing-neo-contract-plugin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installing NEO Contract Plugin</h2>
+<p>This is made through Visual Studio.</p>
+<ul>
+<li>Open Visual Studio;
+<ul>
+<li>Tools -&gt; Extensions and Updates;</li>
+<li>Online -&gt; &quot;neo&quot;;</li>
+<li>Download and install it (you need to restart Visual Studio)</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="setting-up-your-contract-project"></a><a href="#setting-up-your-contract-project" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting up your Contract Project</h2>
+<p>This configuration will tell Visual Studio to compile the resulting project dll into an AVM.
+Visual Studio must find the compiler in order to complete this task. We solve this using the the compiler from neo-debugger tools (neon.exe from the previous step).</p>
+<ul>
+<li>Create a new Project
+<ul>
+<li>Scroll down and select &quot;NEO Contract Project&quot;</li>
+</ul></li>
+<li>Tweak the project file in order to use the debugger compiler;
+<ul>
+<li>Open the project folder, inside the solution folder. Edit the project <code>.csproj</code> file. Remove the AfterBuild target in the end of the file:</li>
+</ul>
+<pre><code class="hljs css language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">Target</span> <span class="hljs-attr">Name</span>=<span class="hljs-string">"AfterBuild"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Message</span> <span class="hljs-attr">Text</span>=<span class="hljs-string">"Start NeoContract converter, Source File: $(TargetPath)"</span> <span class="hljs-attr">Importance</span>=<span class="hljs-string">"high"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Message</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ConvertTask</span> <span class="hljs-attr">DataSource</span>=<span class="hljs-string">"$(TargetPath)"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Target</span>&gt;</span>
+</code></pre></li>
+<li>Open your Smart Contract in Visual Studio;
+<ul>
+<li>In the project properties, add a new Post Build Event:
+<pre><code class="hljs css language-bash"><span class="hljs-built_in">set</span> PATH=<span class="hljs-string">"C:\source\repos\neo-debugger-tools\NEO-Compiler\bin\Debug"</span>;%PATH%
+neon.exe $(TargetPath)
+</code></pre>
+NOTE: The folder path must match the output from the neo-debugger-tools compiler output.</li>
+</ul></li>
+<li>Configure to open the debugger with the resulting <code>.avm</code>:
+<ul>
+<li>In the project properties, in debug, choose <code>start external program</code>.
+<ul>
+<li>Add the <code>ProjectName.avm</code> as a parameter;</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>If all the steps are configured properly, press f5 in Visual Studio to compile and run your project. The debugger will open automatically.</p>
+<h1><a class="anchor" aria-hidden="true" id="configuring-tests"></a><a href="#configuring-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring Tests</h1>
+<p>It is a good practice to have your tests saved. Neo-debugger-tools support saving your tests in a separate <code>.json</code> file.</p>
+<ul>
+<li>In Visual Studio, create and add a new <code>.json</code> file called  <code>ProjectName.test.json</code>.</li>
+<li>In the project properties, edit your post build event to copy the test file:
+<ul>
+<li><pre><code class="hljs css language-BASH"></code></pre></li>
+</ul>
+set PATH=&quot;C:\source\repos\neo-debugger-tools\NEO-Compiler\bin\Debug&quot;;%PATH%
+neon.exe $(TargetPath)
+xcopy /y $(ProjectDir)FishEffect.test.json  $(ProjectDir)$(OutDir)
+<pre><code class="hljs"></code></pre></li>
+<li>Add a sample test into your <code>.json</code> file:
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"cases"</span>: [
+      {
+          <span class="hljs-attr">"name"</span>: <span class="hljs-string">"NEP-5_symbol"</span>,
+          <span class="hljs-attr">"method"</span>: <span class="hljs-string">"Main"</span>,
+          <span class="hljs-attr">"params"</span>: [
+              <span class="hljs-string">"symbol"</span>,
+              [ <span class="hljs-number">0</span> ]
+          ]
+      }
+    ]
+  }
+</code></pre></li>
+</ul>
+<p>If all the steps are configured properly, the debugger will now show your saved test cases.</p>
+<h1><a class="anchor" aria-hidden="true" id="tips"></a><a href="#tips" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tips</h1>
+<p>Remember that an address is not the same as the scripthash, so it is very important that you do some proper conversion if you want to deal with address in NEO.</p>
+<ul>
+<li>In the SmartContract, use &quot;<code>C#&quot;youraddress&quot;.ToScriptHash()&quot;</code>(compile time only);</li>
+<li>When using an address as an input in byte array format, convert it online doing the following:
+<ul>
+<li>Open <a href="https://neocompiler.io/#/ecolab">https://neocompiler.io/#/ecolab</a>.</li>
+<li>In conversors, first convert the address into a ScriptHash;</li>
+<li>Do a reverse-hex (Hex &lt;-&gt; xeH).</li>
+<li>The output will be something like this:
+<ul>
+<li><code>ea2b832323fb5e69e7359bb559c1dd902da800a5</code>.</li>
+<li>Use in the debugger like this: <code>0xea2b832323fb5e69e7359bb559c1dd902da800a5</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<h1><a class="anchor" aria-hidden="true" id="credits"></a><a href="#credits" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Credits</h1>
+<p>To Michael Herman who is responsible for a series of tutorials regarding NEO Technology with C#.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/fisheffect/docs/contracttrigger"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/fisheffect/docs/getnep5"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#required-software">Required Software</a></li><li><a href="#downloading-and-compiling-neo-debugger-tools">Downloading and compiling NEO Debugger Tools</a></li><li><a href="#installing-neo-contract-plugin">Installing NEO Contract Plugin</a></li><li><a href="#setting-up-your-contract-project">Setting up your Contract Project</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/fisheffect/" class="nav-home"><img src="/fisheffect/img/docusaurus.svg" alt="fisheffect" width="66" height="58"/></a><div><h5>Docs</h5><a href="/fisheffect/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/fisheffect/docs/en/doc2.html">Guides (or other categories)</a><a href="/fisheffect/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/fisheffect/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/fisheffect/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/fisheffect/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 Your Name or Your Company Name</section></footer></div></body></html>

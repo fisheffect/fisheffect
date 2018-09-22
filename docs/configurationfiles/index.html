@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Script Configuration Files · fisheffect</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Neo-python"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Script Configuration Files · fisheffect"/><meta property="og:type" content="website"/><meta property="og:url" content="https://fisheffect.github.io/fisheffect//fisheffect/index.html"/><meta property="og:description" content="## Neo-python"/><meta property="og:image" content="https://fisheffect.github.io/fisheffect//fisheffect/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://fisheffect.github.io/fisheffect//fisheffect/img/docusaurus.png"/><link rel="shortcut icon" href="/fisheffect/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/fisheffect/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fisheffect/"><img class="logo" src="/fisheffect/img/docusaurus.svg" alt="fisheffect"/><h2 class="headerTitleWithLogo">fisheffect</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/fisheffect/docs/address" target="_self">Docs</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Overview</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Overview</h3><ul><li class="navListItem"><a class="navItem" href="/fisheffect/docs/address">Address</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/authorization">authorization</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/bitbyte">Data Types</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/blockchain">Blockchain</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/buildyourtoken">Tokens</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/buildyourtokentechnical">buildyourtokentechnical</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/compilers">Compilers</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/fisheffect/docs/configurationfiles">Configuration Files</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/consensus">DBFT - Consensus</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/contract">Contract</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/contracttrigger">Contract Triggers</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/csharpguide">C# Smart Contract Development</a></li><li class="navListItem"><a class="navItem" href="/fisheffect/docs/getnep5">getnep5</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">NEO Smart Contract Interfacing</h3><ul><li class="navListItem"><a class="navItem" href="/fisheffect/docs/interfacing_ios">Swift for iOS</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Script Configuration Files</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="neo-python"></a><a href="#neo-python" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Neo-python</h2>
+<p>The configuration files used in neo-python are stored in <code>neo-python/neo/data/</code>. You can choose the network you want to connect using parameters during startup.
+<code>np-prompt -p</code> will connect to your local network, while <code>np-prompt -m</code> will synchronize your files using the main network.
+If you have setup a remote private network, you can connect to it using <code>np-prompt -p IP-ADDRESS</code>.
+Example of neo-python <code>protocol.json</code> (configured to access a local private network):</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"ProtocolConfiguration"</span>: {
+    <span class="hljs-attr">"Magic"</span>: <span class="hljs-number">56753</span>,
+    <span class="hljs-attr">"AddressVersion"</span>: <span class="hljs-number">23</span>,
+    <span class="hljs-attr">"StandbyValidators"</span>: [
+        <span class="hljs-string">"02b3622bf4017bdfe317c58aed5f4c753f206b7db896046fa7d774bbc4bf7f8dc2"</span>,
+        <span class="hljs-string">"02103a7f7dd016558597f7960d27c516a4394fd968b9e65155eb4b013e4040406e"</span>,
+        <span class="hljs-string">"03d90c07df63e690ce77912e10ab51acc944b66860237b608c4f8f8309e71ee699"</span>,
+        <span class="hljs-string">"02a7bc55fe8684e0119768d104ba30795bdcc86619e864add26156723ed185cd62"</span>
+    ],
+    <span class="hljs-attr">"SeedList"</span>: [
+        <span class="hljs-string">"127.0.0.1:20333"</span>,
+        <span class="hljs-string">"127.0.0.1:20334"</span>,
+        <span class="hljs-string">"127.0.0.1:20335"</span>,
+        <span class="hljs-string">"127.0.0.1:20336"</span>
+    ],
+    <span class="hljs-attr">"RPCList"</span>:[
+      <span class="hljs-string">"http://127.0.0.1:30333"</span>
+    ],
+    <span class="hljs-attr">"SystemFee"</span>: {
+        <span class="hljs-attr">"EnrollmentTransaction"</span>: <span class="hljs-number">1000</span>,
+        <span class="hljs-attr">"IssueTransaction"</span>: <span class="hljs-number">500</span>,
+        <span class="hljs-attr">"PublishTransaction"</span>: <span class="hljs-number">500</span>,
+        <span class="hljs-attr">"RegisterTransaction"</span>: <span class="hljs-number">10000</span>
+    }
+  },
+
+  <span class="hljs-attr">"ApplicationConfiguration"</span>: {
+    <span class="hljs-attr">"DataDirectoryPath"</span>: <span class="hljs-string">"Chains/privnet"</span>,
+    <span class="hljs-attr">"NotificationDataPath"</span>: <span class="hljs-string">"Chains/privnet_notif"</span>,
+    <span class="hljs-attr">"RPCPort"</span>: <span class="hljs-number">20332</span>,
+    <span class="hljs-attr">"NodePort"</span>: <span class="hljs-number">20333</span>,
+    <span class="hljs-attr">"WsPort"</span>: <span class="hljs-number">20334</span>,
+    <span class="hljs-attr">"UriPrefix"</span>: [ <span class="hljs-string">"http://*:20332"</span> ],
+    <span class="hljs-attr">"SslCert"</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">"SslCertPassword"</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">"BootstrapFile"</span>:<span class="hljs-string">""</span>,
+    <span class="hljs-attr">"NotificationBootstrapFile"</span>:<span class="hljs-string">""</span>,
+    <span class="hljs-attr">"DebugStorage"</span>:<span class="hljs-number">1</span>
+  }
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="neo-cli"></a><a href="#neo-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Neo-cli</h2>
+<p>In Neo-cli, we use two configuration files. One is used to define the protocol and network information, and the other is related to the neo-cli application.
+Use <code>config.json</code> for neo-cli related configuration and <code>protocol.json</code> for neo protocol related configuration.
+Example of <code>config.json</code>:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"ApplicationConfiguration"</span>: {
+    <span class="hljs-attr">"Paths"</span>: {
+      <span class="hljs-attr">"Chain"</span>: <span class="hljs-string">"Chain_{0}"</span>,
+      <span class="hljs-attr">"Index"</span>: <span class="hljs-string">"Index_{0}"</span>
+    },
+    <span class="hljs-attr">"P2P"</span>: {
+      <span class="hljs-attr">"Port"</span>: <span class="hljs-number">10333</span>,
+      <span class="hljs-attr">"WsPort"</span>: <span class="hljs-number">10334</span>
+    },
+    <span class="hljs-attr">"RPC"</span>: {
+      <span class="hljs-attr">"Port"</span>: <span class="hljs-number">10332</span>,
+      <span class="hljs-attr">"SslCert"</span>: <span class="hljs-string">""</span>,
+      <span class="hljs-attr">"SslCertPassword"</span>: <span class="hljs-string">""</span>
+    },
+    <span class="hljs-attr">"UnlockWallet"</span>: {
+      <span class="hljs-attr">"Path"</span>: <span class="hljs-string">""</span>,
+      <span class="hljs-attr">"Password"</span>: <span class="hljs-string">""</span>,
+      <span class="hljs-attr">"StartConsensus"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"IsActive"</span>: <span class="hljs-literal">false</span>
+    }
+  }
+}
+</code></pre>
+<p>Example of <code>protocol.json</code>:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"ProtocolConfiguration"</span>: {
+    <span class="hljs-attr">"Magic"</span>: <span class="hljs-number">7630401</span>,
+    <span class="hljs-attr">"AddressVersion"</span>: <span class="hljs-number">23</span>,
+    <span class="hljs-attr">"SecondsPerBlock"</span>: <span class="hljs-number">15</span>,
+    <span class="hljs-attr">"StandbyValidators"</span>: [
+      <span class="hljs-string">"03b209fd4f53a7170ea4444e0cb0a6bb6a53c2bd016926989cf85f9b0fba17a70c"</span>,
+      <span class="hljs-string">"02df48f60e8f3e01c48ff40b9b7f1310d7a8b2a193188befe1c2e3df740e895093"</span>,
+      <span class="hljs-string">"03b8d9d5771d8f513aa0869b9cc8d50986403b78c6da36890638c3d46a5adce04a"</span>,
+      <span class="hljs-string">"02ca0e27697b9c248f6f16e085fd0061e26f44da85b58ee835c110caa5ec3ba554"</span>,
+      <span class="hljs-string">"024c7b7fb6c310fccf1ba33b082519d82964ea93868d676662d4a59ad548df0e7d"</span>,
+      <span class="hljs-string">"02aaec38470f6aad0042c6e877cfd8087d2676b0f516fddd362801b9bd3936399e"</span>,
+      <span class="hljs-string">"02486fd15702c4490a26703112a5cc1d0923fd697a33406bd5a1c00e0013b09a70"</span>
+    ],
+    <span class="hljs-attr">"SeedList"</span>: [
+      <span class="hljs-string">"seed1.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed2.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed3.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed4.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed5.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed6.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed7.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed8.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed9.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed10.ngd.network:10333"</span>,
+      <span class="hljs-string">"seed1.neo.org:10333"</span>,
+      <span class="hljs-string">"seed2.neo.org:10333"</span>,
+      <span class="hljs-string">"seed3.neo.org:10333"</span>,
+      <span class="hljs-string">"seed4.neo.org:10333"</span>,
+      <span class="hljs-string">"seed5.neo.org:10333"</span>
+    ],
+    <span class="hljs-attr">"SystemFee"</span>: {
+      <span class="hljs-attr">"EnrollmentTransaction"</span>: <span class="hljs-number">1000</span>,
+      <span class="hljs-attr">"IssueTransaction"</span>: <span class="hljs-number">500</span>,
+      <span class="hljs-attr">"PublishTransaction"</span>: <span class="hljs-number">500</span>,
+      <span class="hljs-attr">"RegisterTransaction"</span>: <span class="hljs-number">10000</span>
+    }
+  }
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/fisheffect/docs/compilers"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/fisheffect/docs/consensus"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#neo-python">Neo-python</a></li><li><a href="#neo-cli">Neo-cli</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/fisheffect/" class="nav-home"><img src="/fisheffect/img/docusaurus.svg" alt="fisheffect" width="66" height="58"/></a><div><h5>Docs</h5><a href="/fisheffect/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/fisheffect/docs/en/doc2.html">Guides (or other categories)</a><a href="/fisheffect/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/fisheffect/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/fisheffect/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/fisheffect/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 Your Name or Your Company Name</section></footer></div></body></html>
